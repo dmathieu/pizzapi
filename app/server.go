@@ -13,6 +13,11 @@ import (
 	"github.com/gorilla/mux"
 )
 
+type ErrorResponse struct {
+	Id      string `json:"id"`
+	Message string `json:"message"`
+}
+
 type orderBody struct {
 	Pizza int `json:"id"`
 }
@@ -36,11 +41,11 @@ func findOrder(w http.ResponseWriter, r *http.Request) {
 	order, err := FindOrder(id)
 	if err != nil {
 		w.WriteHeader(404)
-		if err := json.NewEncoder(w).Encode(err); err != nil {
+		response := &ErrorResponse{Id: "not_found", Message: "Order not found"}
+		if err := json.NewEncoder(w).Encode(response); err != nil {
 			panic(err)
 		}
-    fmt.Fprintf(w, "Order not found")
-    return
+		return
 	}
 
 	if err := json.NewEncoder(w).Encode(order); err != nil {
@@ -59,20 +64,20 @@ func createOrder(w http.ResponseWriter, r *http.Request) {
 	}
 	if err := json.Unmarshal(body, &orderContent); err != nil {
 		w.WriteHeader(422)
-		if err := json.NewEncoder(w).Encode(err); err != nil {
+		response := &ErrorResponse{Id: "invalid", Message: "Invalid data"}
+		if err := json.NewEncoder(w).Encode(response); err != nil {
 			panic(err)
 		}
-    fmt.Fprintf(w, "Invalid data")
 		return
 	}
 
 	pizza, err := FindPizza(orderContent.Pizza)
 	if err != nil {
 		w.WriteHeader(422)
-		if err := json.NewEncoder(w).Encode(err); err != nil {
+		response := &ErrorResponse{Id: "not_found", Message: "Pizza not found"}
+		if err := json.NewEncoder(w).Encode(response); err != nil {
 			panic(err)
 		}
-    fmt.Fprintf(w, "Pizza id not found")
 		return
 	}
 
@@ -84,6 +89,38 @@ func createOrder(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+type upgradeBody struct {
+	Name string `json:"name"`
+  Ip string `json:"ip"`
+}
+
+func upgrade(w http.ResponseWriter, r *http.Request) {
+	var upgradeContent upgradeBody
+	body, err := ioutil.ReadAll(io.LimitReader(r.Body, 1048576))
+	if err != nil {
+		panic(err)
+	}
+	if err := r.Body.Close(); err != nil {
+		panic(err)
+	}
+	if err := json.Unmarshal(body, &upgradeContent); err != nil {
+		w.WriteHeader(422)
+		if err := json.NewEncoder(w).Encode(err); err != nil {
+			panic(err)
+		}
+		response := &ErrorResponse{Id: "invalid", Message: "Invalid data"}
+		if err := json.NewEncoder(w).Encode(response); err != nil {
+			panic(err)
+		}
+		return
+	}
+
+  constraint, _ := findConstraint(upgradeContent.Ip)
+  constraint.Constraint = upgradeContent.Name
+
+	log.Printf("count#upgraded name=%s ip=%s", upgradeContent.Name, upgradeContent.Ip)
+}
+
 func app() http.Handler {
 	r := mux.NewRouter()
 	r.HandleFunc("/", home).Methods("GET")
@@ -91,8 +128,9 @@ func app() http.Handler {
 	r.HandleFunc("/orders/{id}", findOrder).Methods("GET")
 
 	r.HandleFunc("/orders", createOrder).Methods("POST")
+	r.HandleFunc("/upgrade", upgrade).Methods("POST")
 
-	return logRequest(r.ServeHTTP)
+	return applyConstraints(logRequest(r.ServeHTTP))
 }
 
 func StartServer(port string, shutdown <-chan struct{}) {
