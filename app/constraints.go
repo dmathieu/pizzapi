@@ -3,7 +3,9 @@ package app
 import (
 	"encoding/json"
 	"log"
+	"math/rand"
 	"net/http"
+	"time"
 )
 
 type Constraint struct {
@@ -34,6 +36,8 @@ func applyConstraints(fn http.HandlerFunc) http.HandlerFunc {
 		case "maintenance":
 			maintenance(w, r)
 			return
+		case "slow":
+			slow(fn, w, r)
 		}
 		fn(w, r)
 	}
@@ -47,4 +51,14 @@ func maintenance(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 	log.Printf("count#http.maintenance method=%s path=%s", r.Method, r.URL.Path)
+}
+
+func slow(fn http.HandlerFunc, w http.ResponseWriter, r *http.Request) {
+
+	rand.Seed(time.Now().Unix())
+	duration := rand.Intn(60 - 30) + 30
+
+  log.Printf("count#http.slow method=%s path=%s duration=%d", r.Method, r.URL.Path, duration)
+	time.Sleep(time.Duration(duration) * time.Second)
+	fn(w, r)
 }

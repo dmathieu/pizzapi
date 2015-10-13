@@ -91,7 +91,7 @@ func createOrder(w http.ResponseWriter, r *http.Request) {
 
 type upgradeBody struct {
 	Name string `json:"name"`
-  Ip string `json:"ip"`
+	Ip   string `json:"ip"`
 }
 
 func upgrade(w http.ResponseWriter, r *http.Request) {
@@ -115,8 +115,8 @@ func upgrade(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-  constraint, _ := findConstraint(upgradeContent.Ip)
-  constraint.Constraint = upgradeContent.Name
+	constraint, _ := findConstraint(upgradeContent.Ip)
+	constraint.Constraint = upgradeContent.Name
 
 	log.Printf("count#upgraded name=%s ip=%s", upgradeContent.Name, upgradeContent.Ip)
 }
