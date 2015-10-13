@@ -38,6 +38,10 @@ func applyConstraints(fn http.HandlerFunc) http.HandlerFunc {
 			return
 		case "slow":
 			slow(fn, w, r)
+			return
+		case "erroring":
+			erroring(fn, w, r)
+			return
 		}
 		fn(w, r)
 	}
@@ -56,9 +60,27 @@ func maintenance(w http.ResponseWriter, r *http.Request) {
 func slow(fn http.HandlerFunc, w http.ResponseWriter, r *http.Request) {
 
 	rand.Seed(time.Now().Unix())
-	duration := rand.Intn(60 - 30) + 30
+	duration := rand.Intn(60-30) + 30
 
-  log.Printf("count#http.slow method=%s path=%s duration=%d", r.Method, r.URL.Path, duration)
+	log.Printf("count#http.slow method=%s path=%s duration=%d", r.Method, r.URL.Path, duration)
 	time.Sleep(time.Duration(duration) * time.Second)
 	fn(w, r)
+}
+
+func erroring(fn http.HandlerFunc, w http.ResponseWriter, r *http.Request) {
+
+	rand.Seed(time.Now().Unix())
+	randomizer := rand.Intn(10)
+
+	if randomizer >= 7 {
+		fn(w, r)
+	} else {
+		log.Printf("count#http.error method=%s path=%s", r.Method, r.URL.Path)
+
+		w.WriteHeader(500)
+		response := &ErrorResponse{Id: "error", Message: "An unknown error occured."}
+		if err := json.NewEncoder(w).Encode(response); err != nil {
+			panic(err)
+		}
+	}
 }
