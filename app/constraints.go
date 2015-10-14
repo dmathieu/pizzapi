@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"math/rand"
+	"net"
 	"net/http"
 	"time"
 )
@@ -29,7 +30,8 @@ func findConstraint(ip string) (*Constraint, error) {
 
 func applyConstraints(fn http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		constraint, _ := findConstraint(r.RemoteAddr)
+		ip, _, _ := net.SplitHostPort(r.RemoteAddr)
+		constraint, _ := findConstraint(ip)
 
 		log.Printf("count#constraints method=%s path=%s constraint=%s ip=%s", r.Method, r.URL.Path, constraint.Constraint, constraint.Ip)
 		switch constraint.Constraint {
