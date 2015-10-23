@@ -1,0 +1,6 @@
+{
+  "name": "pizzapi",
+  "description": "Teaching resiliancy in a university",
+  "mount_dir": "src/github.com/dmathieu/pizzapi",
+  "repository": "https://github.com/dmathieu/pizzapi"
+}

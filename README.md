@@ -1,5 +1,7 @@
 # PizzAPI
 
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
 This API provides a way of viewing pizzas and ordering them.
 
 | Verb | Path        | Description                          |
