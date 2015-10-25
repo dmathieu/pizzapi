@@ -118,7 +118,8 @@ func upgrade(w http.ResponseWriter, r *http.Request) {
 	constraint, _ := findConstraint(upgradeContent.Ip)
 	constraint.Constraint = upgradeContent.Name
 
-	log.Printf("count#upgraded name=%s ip=%s", upgradeContent.Name, upgradeContent.Ip)
+	request_id := requestId(r)
+	log.Printf("count#upgraded name=%s ip=%s request_id=", upgradeContent.Name, upgradeContent.Ip, request_id)
 }
 
 func app() http.Handler {

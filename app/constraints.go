@@ -33,7 +33,8 @@ func applyConstraints(fn http.HandlerFunc) http.HandlerFunc {
 		ip, _, _ := net.SplitHostPort(r.RemoteAddr)
 		constraint, _ := findConstraint(ip)
 
-		log.Printf("count#constraints method=%s path=%s constraint=%s ip=%s", r.Method, r.URL.Path, constraint.Constraint, constraint.Ip)
+		request_id := requestId(r)
+		log.Printf("count#constraints method=%s path=%s constraint=%s request_id=%s ip=%s", r.Method, r.URL.Path, constraint.Constraint, request_id, constraint.Ip)
 		switch constraint.Constraint {
 		case "maintenance":
 			maintenance(w, r)
@@ -56,7 +57,8 @@ func maintenance(w http.ResponseWriter, r *http.Request) {
 	if err := json.NewEncoder(w).Encode(response); err != nil {
 		panic(err)
 	}
-	log.Printf("count#http.maintenance method=%s path=%s", r.Method, r.URL.Path)
+	request_id := requestId(r)
+	log.Printf("count#http.maintenance method=%s path=%s request_id=%s", r.Method, r.URL.Path, request_id)
 }
 
 func slow(fn http.HandlerFunc, w http.ResponseWriter, r *http.Request) {
@@ -64,7 +66,8 @@ func slow(fn http.HandlerFunc, w http.ResponseWriter, r *http.Request) {
 	rand.Seed(time.Now().Unix())
 	duration := rand.Intn(60-30) + 30
 
-	log.Printf("count#http.slow method=%s path=%s duration=%d", r.Method, r.URL.Path, duration)
+	request_id := requestId(r)
+	log.Printf("count#http.slow method=%s path=%s duration=%d request_id=&s", r.Method, r.URL.Path, duration, request_id)
 	time.Sleep(time.Duration(duration) * time.Second)
 	fn(w, r)
 }
@@ -77,7 +80,8 @@ func erroring(fn http.HandlerFunc, w http.ResponseWriter, r *http.Request) {
 	if randomizer >= 7 {
 		fn(w, r)
 	} else {
-		log.Printf("count#http.error method=%s path=%s", r.Method, r.URL.Path)
+		request_id := requestId(r)
+		log.Printf("count#http.error method=%s path=%s request_id=%s", r.Method, r.URL.Path, request_id)
 
 		w.WriteHeader(500)
 		response := &ErrorResponse{Id: "error", Message: "An unknown error occured."}

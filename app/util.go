@@ -1,6 +1,8 @@
 package app
 
 import (
+	"crypto/rand"
+	"encoding/hex"
 	"flag"
 	"log"
 	"net/http"
@@ -31,8 +33,41 @@ func AwaitSignals(signals ...os.Signal) <-chan struct{} {
 
 func logRequest(fn http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		request_id := requestId(r)
 		fn(w, r)
-		log.Printf("count#http method=%s path=%s", r.Method, r.URL.Path)
+		log.Printf("count#http method=%s path=%s request_id=%s", r.Method, r.URL.Path, request_id)
 
 	}
+}
+
+func NewUUID() (string, error) {
+	uuid := make([]byte, 16)
+	n, err := rand.Read(uuid)
+	if n != len(uuid) || err != nil {
+		return "", err
+	}
+
+	uuid[8] = 0x80 // variant bits see page 5
+	uuid[4] = 0x40 // version 4 Pseudo Random, see page 7
+
+	return hex.EncodeToString(uuid), nil
+}
+
+func requestId(r *http.Request) (id string) {
+	if id = r.Header.Get("Request-Id"); id == "" {
+		id = r.Header.Get("X-Request-Id")
+	}
+
+	if id == "" {
+		// In the event of a rare case where uuid
+		// generation fails, it's probably more
+		// desirable to continue as is with an empty
+		// request_id than to bubble the error up the
+		// stack.
+		uuid, _ := NewUUID()
+		id = string(uuid)
+		r.Header.Set("X-Request-Id", id)
+	}
+
+	return id
 }
