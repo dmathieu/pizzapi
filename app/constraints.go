@@ -77,7 +77,7 @@ func slow(fn http.HandlerFunc, w http.ResponseWriter, r *http.Request) {
 	duration := rand.Intn(60-30) + 30
 
 	request_id := requestId(r)
-	log.Printf("count#http.slow method=%s path=%s duration=%d request_id=&s", r.Method, r.URL.Path, duration, request_id)
+	log.Printf("count#http.slow method=%s path=%s duration=%d request_id=%s", r.Method, r.URL.Path, duration, request_id)
 	time.Sleep(time.Duration(duration) * time.Second)
 	fn(w, r)
 }
