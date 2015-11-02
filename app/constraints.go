@@ -74,7 +74,7 @@ func maintenance(w http.ResponseWriter, r *http.Request) {
 func slow(fn http.HandlerFunc, w http.ResponseWriter, r *http.Request) {
 
 	rand.Seed(time.Now().Unix())
-	duration := rand.Intn(60-30) + 30
+	duration := rand.Intn(30-15) + 15
 
 	request_id := requestId(r)
 	log.Printf("count#http.slow method=%s path=%s duration=%d request_id=%s", r.Method, r.URL.Path, duration, request_id)
