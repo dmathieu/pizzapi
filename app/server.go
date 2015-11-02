@@ -65,7 +65,7 @@ func createOrder(w http.ResponseWriter, r *http.Request) {
 	}
 	if err := json.Unmarshal(body, &orderContent); err != nil {
 		w.WriteHeader(422)
-		response := &ErrorResponse{Id: "invalid", Message: "Invalid data"}
+		response := &ErrorResponse{Id: "invalid", Message: fmt.Sprintf("Invalid data. Expected '{\"id\":1}'. Got %s", body)}
 		if err := json.NewEncoder(w).Encode(response); err != nil {
 			panic(err)
 		}
