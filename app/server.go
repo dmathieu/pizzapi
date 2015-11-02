@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 	"strconv"
 
 	"github.com/braintree/manners"
@@ -92,6 +93,7 @@ func createOrder(w http.ResponseWriter, r *http.Request) {
 type upgradeBody struct {
 	Name string `json:"name"`
 	Ip   string `json:"ip"`
+	Key  string `json:"key"`
 }
 
 func upgrade(w http.ResponseWriter, r *http.Request) {
@@ -109,6 +111,14 @@ func upgrade(w http.ResponseWriter, r *http.Request) {
 			panic(err)
 		}
 		response := &ErrorResponse{Id: "invalid", Message: "Invalid data"}
+		if err := json.NewEncoder(w).Encode(response); err != nil {
+			panic(err)
+		}
+		return
+	}
+
+	if upgradeContent.Key != os.Getenv("UPGRADE_KEY") {
+		response := &ErrorResponse{Id: "unauthorized", Message: "Not authorized"}
 		if err := json.NewEncoder(w).Encode(response); err != nil {
 			panic(err)
 		}
