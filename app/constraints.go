@@ -15,23 +15,33 @@ type Constraint struct {
 }
 
 var loadedConstraints []*Constraint
+var globalConstraint = &Constraint{Ip: "all", Constraint: "none"}
 
-func findConstraint(ip string) (*Constraint, error) {
+func findConstraint(ip string, defaultGlobal bool) (*Constraint, error) {
 	for _, v := range loadedConstraints {
 		if v.Ip == ip {
 			return v, nil
 		}
 	}
 
-	constraint := &Constraint{Ip: ip, Constraint: "none"}
-	loadedConstraints = append(loadedConstraints, constraint)
-	return constraint, nil
+	if defaultGlobal {
+		return globalConstraint, nil
+	} else {
+		constraint := &Constraint{Ip: ip, Constraint: "none"}
+		loadedConstraints = append(loadedConstraints, constraint)
+		return constraint, nil
+	}
 }
 
 func applyConstraints(fn http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		ip, _, _ := net.SplitHostPort(r.RemoteAddr)
-		constraint, _ := findConstraint(ip)
+		constraint, _ := findConstraint(ip, true)
+
+		if r.URL.Path == "/upgrade" {
+			fn(w, r)
+			return
+		}
 
 		request_id := requestId(r)
 		log.Printf("count#constraints method=%s path=%s constraint=%s request_id=%s ip=%s", r.Method, r.URL.Path, constraint.Constraint, request_id, constraint.Ip)

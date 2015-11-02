@@ -125,7 +125,12 @@ func upgrade(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	constraint, _ := findConstraint(upgradeContent.Ip)
+	var constraint *Constraint
+	if upgradeContent.Ip == "all" {
+		constraint = globalConstraint
+	} else {
+		constraint, _ = findConstraint(upgradeContent.Ip, false)
+	}
 	constraint.Constraint = upgradeContent.Name
 
 	request_id := requestId(r)
