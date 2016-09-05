@@ -34,9 +34,9 @@ func AwaitSignals(signals ...os.Signal) <-chan struct{} {
 func logRequest(fn http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		request_id := requestId(r)
+		token := r.Header.Get("Authorization")
 		fn(w, r)
-		log.Printf("count#http method=%s path=%s request_id=%s", r.Method, r.URL.Path, request_id)
-
+		log.Printf("count#http method=%s path=%s request_id=%s token=%s", r.Method, r.URL.Path, request_id, token)
 	}
 }
 

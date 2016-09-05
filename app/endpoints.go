@@ -84,9 +84,8 @@ func createOrder(w http.ResponseWriter, r *http.Request) {
 
 func upgrade(w http.ResponseWriter, r *http.Request) {
 	var upgradeContent struct {
-		Name string `json:"name"`
-		Ip   string `json:"ip"`
-		Key  string `json:"key"`
+		Name  string `json:"name"`
+		Token string `json:"token"`
 	}
 	body, err := ioutil.ReadAll(io.LimitReader(r.Body, 1048576))
 	if err != nil {
@@ -107,7 +106,8 @@ func upgrade(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if upgradeContent.Key != os.Getenv("UPGRADE_KEY") {
+	token := r.Header.Get("Authorization")
+	if token != os.Getenv("UPGRADE_KEY") {
 		response := &errorResponse{Id: "unauthorized", Message: "Not authorized"}
 		if err := json.NewEncoder(w).Encode(response); err != nil {
 			panic(err)
@@ -115,14 +115,8 @@ func upgrade(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var constraint *Constraint
-	if upgradeContent.Ip == "all" {
-		constraint = globalConstraint
-	} else {
-		constraint, _ = findConstraint(upgradeContent.Ip, false)
-	}
-	constraint.Constraint = upgradeContent.Name
+	buildConstraint(upgradeContent.Token, upgradeContent.Name)
 
 	request_id := requestId(r)
-	log.Printf("count#upgraded name=%s ip=%s request_id=%s", upgradeContent.Name, upgradeContent.Ip, request_id)
+	log.Printf("count#upgraded name=%s token=%s request_id=%s", upgradeContent.Name, upgradeContent.Token, request_id)
 }

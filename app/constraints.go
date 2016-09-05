@@ -2,49 +2,72 @@ package app
 
 import (
 	"encoding/json"
+	"errors"
 	"log"
 	"math/rand"
-	"net"
 	"net/http"
 	"time"
 )
 
 type Constraint struct {
 	Constraint string `json:"constraint"`
-	Ip         string `json:"ip"`
+	Token      string `json:"token"`
 }
 
 var loadedConstraints []*Constraint
-var globalConstraint = &Constraint{Ip: "all", Constraint: "none"}
 
-func findConstraint(ip string, defaultGlobal bool) (*Constraint, error) {
+var ErrInvalidToken = errors.New("A valid token is requied in the `Authorization` header")
+
+func buildConstraint(token, constraint string) (*Constraint, error) {
+	c, err := findConstraint(token)
+	if err == nil {
+		return c, nil
+	}
+
+	c = &Constraint{Token: token, Constraint: constraint}
+	loadedConstraints = append(loadedConstraints, c)
+	return c, nil
+}
+
+func findConstraint(token string) (*Constraint, error) {
 	for _, v := range loadedConstraints {
-		if v.Ip == ip {
+		if v.Token == token {
 			return v, nil
 		}
 	}
 
-	if defaultGlobal {
-		return globalConstraint, nil
-	} else {
-		constraint := &Constraint{Ip: ip, Constraint: "none"}
-		loadedConstraints = append(loadedConstraints, constraint)
-		return constraint, nil
-	}
+	return nil, ErrInvalidToken
 }
 
 func applyConstraints(fn http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		ip, _, _ := net.SplitHostPort(r.RemoteAddr)
-		constraint, _ := findConstraint(ip, true)
+		token := r.Header.Get("Authorization")
+		constraint, err := findConstraint(token)
 
 		if r.URL.Path == "/upgrade" {
 			fn(w, r)
 			return
 		}
 
+		if err != nil {
+			if err == ErrInvalidToken {
+				w.WriteHeader(401)
+			} else {
+				w.WriteHeader(500)
+			}
+			response := &errorResponse{"error", err.Error()}
+
+			if err := json.NewEncoder(w).Encode(response); err != nil {
+				panic(err)
+			}
+			request_id := requestId(r)
+			token := r.Header.Get("Authorization")
+			log.Printf("count#http.error method=%s path=%s request_id=%s token=%s", r.Method, r.URL.Path, request_id, token)
+			return
+		}
+
 		request_id := requestId(r)
-		log.Printf("count#constraints method=%s path=%s constraint=%s request_id=%s ip=%s", r.Method, r.URL.Path, constraint.Constraint, request_id, constraint.Ip)
+		log.Printf("count#constraints method=%s path=%s constraint=%s request_id=%s token=%s", r.Method, r.URL.Path, constraint.Constraint, request_id, constraint.Token)
 		switch constraint.Constraint {
 		case "maintenance":
 			maintenance(w, r)
@@ -68,7 +91,8 @@ func maintenance(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 	request_id := requestId(r)
-	log.Printf("count#http.maintenance method=%s path=%s request_id=%s", r.Method, r.URL.Path, request_id)
+	token := r.Header.Get("Authorization")
+	log.Printf("count#http.maintenance method=%s path=%s request_id=%s token=%s", r.Method, r.URL.Path, request_id, token)
 }
 
 func slow(fn http.HandlerFunc, w http.ResponseWriter, r *http.Request) {
@@ -77,7 +101,8 @@ func slow(fn http.HandlerFunc, w http.ResponseWriter, r *http.Request) {
 	duration := rand.Intn(30-15) + 15
 
 	request_id := requestId(r)
-	log.Printf("count#http.slow method=%s path=%s duration=%d request_id=%s", r.Method, r.URL.Path, duration, request_id)
+	token := r.Header.Get("Authorization")
+	log.Printf("count#http.slow method=%s path=%s duration=%d request_id=%s token=%s", r.Method, r.URL.Path, duration, request_id, token)
 	time.Sleep(time.Duration(duration) * time.Second)
 	fn(w, r)
 }
@@ -91,7 +116,8 @@ func erroring(fn http.HandlerFunc, w http.ResponseWriter, r *http.Request) {
 		fn(w, r)
 	} else {
 		request_id := requestId(r)
-		log.Printf("count#http.error method=%s path=%s request_id=%s", r.Method, r.URL.Path, request_id)
+		token := r.Header.Get("Authorization")
+		log.Printf("count#http.error method=%s path=%s request_id=%s token=%s", r.Method, r.URL.Path, request_id, token)
 
 		w.WriteHeader(500)
 		response := &errorResponse{Id: "error", Message: "An unknown error occured."}

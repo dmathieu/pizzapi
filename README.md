@@ -24,11 +24,19 @@ I'm using this API to teach resiliance in a master's degree. While it would work
 * `slow` - All requests will wait between 30 and 60 seconds before being answered.
 * `erroring` - 7 requests out of 10 will respond with a 500. All others will answer properly.
 
-Constraints are scoped by IP address, so they can be added only for some students.
+Constraints are scoped by the `Authorization` header, so they can be added only for some students.
 
 ## Adding a constraint
 
-> curl --data '{"name":"maintenance","ip":"[::1]:51192"}' http://localhost:5000/upgrade
+> curl --data '{"name":"maintenance","token":"team_name"}' http://localhost:5000/upgrade
+
+A constraint can be added by setting an empty token.
+
+### Upgrade authentication
+
+By setting the `UPGRADE_KEY` environment variable, you can limit who can perform upgrades.
+
+> curl -H "Authorization: my_token" --data '{"name":"maintenance","token":"team_name"}' http://localhost:5000/upgrade
 
 ## Contributing
 
