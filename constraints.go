@@ -84,12 +84,10 @@ func applyConstraints(fn http.HandlerFunc) http.HandlerFunc {
 }
 
 func maintenance(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(503)
-	response := &errorResponse{Id: "maintenance", Message: "API is temporarily unavailable."}
-
-	if err := json.NewEncoder(w).Encode(response); err != nil {
+	if err := serveResponse(w, 503, &errorResponse{"maintenance", "API is temporarily unavailable"}); err != nil {
 		panic(err)
 	}
+
 	request_id := requestId(r)
 	token := r.Header.Get("Authorization")
 	log.Printf("count#http.maintenance method=%s path=%s request_id=%s token=%s", r.Method, r.URL.Path, request_id, token)
@@ -119,9 +117,7 @@ func erroring(fn http.HandlerFunc, w http.ResponseWriter, r *http.Request) {
 		token := r.Header.Get("Authorization")
 		log.Printf("count#http.error method=%s path=%s request_id=%s token=%s", r.Method, r.URL.Path, request_id, token)
 
-		w.WriteHeader(500)
-		response := &errorResponse{Id: "error", Message: "An unknown error occured."}
-		if err := json.NewEncoder(w).Encode(response); err != nil {
+		if err := serveResponse(w, 500, &errorResponse{"not_found", "An unknown error occured"}); err != nil {
 			panic(err)
 		}
 	}

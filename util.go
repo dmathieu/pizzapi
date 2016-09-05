@@ -3,6 +3,7 @@ package pizzapi
 import (
 	"crypto/rand"
 	"encoding/hex"
+	"encoding/json"
 	"flag"
 	"log"
 	"net/http"
@@ -75,4 +76,9 @@ func requestId(r *http.Request) (id string) {
 type errorResponse struct {
 	Id      string `json:"id"`
 	Message string `json:"message"`
+}
+
+func serveResponse(w http.ResponseWriter, status int, response interface{}) error {
+	w.WriteHeader(status)
+	return json.NewEncoder(w).Encode(response)
 }
