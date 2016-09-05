@@ -10,18 +10,18 @@ import (
 	"strconv"
 	"syscall"
 
-	"github.com/dmathieu/pizzapi/app"
+	"github.com/dmathieu/pizzapi"
 )
 
 func main() {
 	fmt.Println("Starting API...")
 	flag.Parse()
 
-	_, err := strconv.Atoi(*app.HttpPort)
+	_, err := strconv.Atoi(*pizzapi.HttpPort)
 	if err != nil {
-		log.Printf("%s: $PORT must be an integer value. - %s\n", app.HttpPort, err)
+		log.Printf("%s: $PORT must be an integer value. - %s\n", *pizzapi.HttpPort, err)
 		os.Exit(1)
 	}
 
-	app.StartServer(*app.HttpPort, app.AwaitSignals(syscall.SIGURG))
+	pizzapi.StartServer(*pizzapi.HttpPort, pizzapi.AwaitSignals(syscall.SIGURG))
 }
