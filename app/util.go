@@ -71,3 +71,8 @@ func requestId(r *http.Request) (id string) {
 
 	return id
 }
+
+type errorResponse struct {
+	Id      string `json:"id"`
+	Message string `json:"message"`
+}
