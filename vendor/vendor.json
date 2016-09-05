@@ -37,5 +37,10 @@
 			"revisionTime": "2015-09-07T01:02:28Z"
 		}
 	],
-	"rootPath": "github.com/dmathieu/pizzapi"
+	"rootPath": "github.com/dmathieu/pizzapi",
+
+  "heroku": {
+    "install": ["./..."],
+    "goVersion": "go1.7"
+  }
 }
