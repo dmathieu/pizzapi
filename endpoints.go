@@ -122,4 +122,7 @@ func upgrade(w http.ResponseWriter, r *http.Request) {
 
 	request_id := requestId(r)
 	log.Printf("count#upgraded name=%s token=%s request_id=%s", upgradeContent.Name, upgradeContent.Token, request_id)
+	if err := serveResponse(w, 200, upgradeContent); err != nil {
+		panic(err)
+	}
 }
