@@ -11,14 +11,16 @@ import (
 func app() http.Handler {
 	r := mux.NewRouter()
 	r.HandleFunc("/", home).Methods("GET")
-	r.HandleFunc("/pizzas", pizzasList).Methods("GET")
-	r.HandleFunc("/orders", findOrders).Methods("GET")
-	r.HandleFunc("/orders/{id}", findOrder).Methods("GET")
+	r.PathPrefix("/doc").Handler(http.StripPrefix("/doc", http.FileServer(http.Dir("./static"))))
 
-	r.HandleFunc("/orders", createOrder).Methods("POST")
 	r.HandleFunc("/upgrade", upgrade).Methods("POST")
 
-	return applyConstraints(logRequest(r.ServeHTTP))
+	r.HandleFunc("/pizzas", applyConstraints(pizzasList)).Methods("GET")
+	r.HandleFunc("/orders", applyConstraints(findOrders)).Methods("GET")
+	r.HandleFunc("/orders/{id}", applyConstraints(findOrder)).Methods("GET")
+	r.HandleFunc("/orders", applyConstraints(createOrder)).Methods("POST")
+
+	return logRequest(r.ServeHTTP)
 }
 
 func StartServer(port string, shutdown <-chan struct{}) {

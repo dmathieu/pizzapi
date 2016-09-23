@@ -14,7 +14,7 @@ import (
 )
 
 func home(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "OK")
+	http.Redirect(w, r, "/doc", http.StatusFound)
 }
 
 func pizzasList(w http.ResponseWriter, r *http.Request) {

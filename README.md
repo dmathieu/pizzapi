@@ -6,6 +6,7 @@ This API provides a way of viewing pizzas and ordering them.
 
 | Verb | Path        | Description                          |
 |------|-------------|--------------------------------------|
+| GET  | /doc        | Get the API documentation            |
 | GET  | /pizzas     | List all pizzas which can be ordered |
 | POST | /orders     | Order a new pizza                    |
 | GET  | /orders     | List all orders                      |
@@ -13,6 +14,9 @@ This API provides a way of viewing pizzas and ordering them.
 
 There is no database. Everything is stored in memory, except for the pizzas list which is in `pizza.json`.
 
+### API Documentation
+
+We're using Swagger/OpenAPI v2.0 for the API documentation. The schema is located in `doc/schema.yaml`.
 
 ### Ordering a pizza
 

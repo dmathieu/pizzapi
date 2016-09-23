@@ -44,11 +44,6 @@ func applyConstraints(fn http.HandlerFunc) http.HandlerFunc {
 		token := r.Header.Get("Authorization")
 		constraint, err := findConstraint(token)
 
-		if r.URL.Path == "/upgrade" {
-			fn(w, r)
-			return
-		}
-
 		if err != nil {
 			if err == ErrInvalidToken {
 				w.WriteHeader(401)

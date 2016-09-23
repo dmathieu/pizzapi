@@ -1,0 +1,99 @@
+swagger: '2.0'
+info:
+  version: "0.0.1"
+  title: Pizzapi
+  description: An API to manage a pizza shop
+  contact:
+    name: Damien MATHIEU
+    url: https://github.com/dmathieu/pizzapi
+    email: 42@dmathieu.com
+  license:
+    name: MIT
+    url: https://github.com/dmathieu/pizzapi/blob/master/LICENSE
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /pizzas:
+    get:
+      description: List all pizzas which can be ordered
+      responses:
+        200:
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pizza'
+  /orders:
+    post:
+      description: Create a new order
+      parameters:
+        - name: Data
+          in: body
+          required: true
+          schema:
+            properties:
+              id:
+                type: integer
+                description: Pizza id
+      responses:
+        200:
+          description: Success
+        404:
+          description: Invalid pizza id provided
+        422:
+          description: Invalid parameters provided
+    get:
+      description: List all existing orders
+      responses:
+        200:
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Order'
+  /orders/{order_id}:
+    get:
+      description: Get an order
+      parameters:
+        - $ref: '#/parameters/order_id'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/Order'
+        404:
+          description: Missing order
+parameters:
+  order_id:
+    name: order_id
+    in: path
+    type: string
+    required: true
+definitions:
+  Pizza:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: Pizzza id
+      name:
+        type: string
+        description: Pizza name
+      price:
+        type: integer
+        description: Pizza price in cents
+  Order:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: Order id
+      item:
+        $ref: '#/definitions/Pizza'
+      status:
+        type: string
+        description: The order status
