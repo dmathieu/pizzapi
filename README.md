@@ -24,7 +24,7 @@ I'm using this API to teach resiliance in a master's degree. While it would work
 
 * `maintenance` - All requests will respond with a 503.
 * `slow` - All requests will wait between 30 and 60 seconds before being answered.
-* `erroring` - 7 requests out of 10 will respond with a 500. All others will answer properly.
+* `cancel` - 7 requests out of 10 will be closed without any response.
 
 Constraints are scoped by the `Authorization` header, so they can be added only for some students.
 

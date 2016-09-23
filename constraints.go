@@ -75,8 +75,8 @@ func applyConstraints(fn http.HandlerFunc) http.HandlerFunc {
 		case "slow":
 			slow(fn, w, r)
 			return
-		case "erroring":
-			erroring(fn, w, r)
+		case "cancel":
+			cancel(fn, w, r)
 			return
 		}
 		fn(w, r)
@@ -105,7 +105,7 @@ func slow(fn http.HandlerFunc, w http.ResponseWriter, r *http.Request) {
 	fn(w, r)
 }
 
-func erroring(fn http.HandlerFunc, w http.ResponseWriter, r *http.Request) {
+func cancel(fn http.HandlerFunc, w http.ResponseWriter, r *http.Request) {
 
 	rand.Seed(time.Now().Unix())
 	randomizer := rand.Intn(10)
@@ -115,10 +115,14 @@ func erroring(fn http.HandlerFunc, w http.ResponseWriter, r *http.Request) {
 	} else {
 		request_id := requestId(r)
 		token := r.Header.Get("Authorization")
-		log.Printf("count#http.error method=%s path=%s request_id=%s token=%s", r.Method, r.URL.Path, request_id, token)
+		log.Printf("count#http.cancel method=%s path=%s request_id=%s token=%s", r.Method, r.URL.Path, request_id, token)
 
-		if err := serveResponse(w, 500, &errorResponse{"not_found", "An unknown error occured"}); err != nil {
-			panic(err)
+		if wr, ok := w.(http.Hijacker); ok {
+			conn, _, err := wr.Hijack()
+			if err != nil {
+				panic(err)
+			}
+			conn.Close()
 		}
 	}
 }
