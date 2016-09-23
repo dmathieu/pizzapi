@@ -30,5 +30,8 @@ func FindOrder(id int) (*Order, error) {
 }
 
 func AllOrders() ([]*Order, error) {
+	if loadedOrders == nil {
+		return []*Order{}, nil
+	}
 	return loadedOrders, nil
 }
