@@ -31,13 +31,27 @@ func findOrder(w http.ResponseWriter, r *http.Request) {
 
 	order, err := FindOrder(id)
 	if err != nil {
-		if err := serveResponse(w, 404, &errorResponse{"not_found", "Order not found"}); err != nil {
+		if err := serveResponse(w, 404, &errorResponse{"not_found", err.Error()}); err != nil {
 			panic(err)
 		}
 		return
 	}
 
 	if err := serveResponse(w, 200, order); err != nil {
+		panic(err)
+	}
+}
+
+func findOrders(w http.ResponseWriter, r *http.Request) {
+	orders, err := AllOrders()
+	if err != nil {
+		if err := serveResponse(w, 404, &errorResponse{"error", err.Error()}); err != nil {
+			panic(err)
+		}
+		return
+	}
+
+	if err := serveResponse(w, 200, orders); err != nil {
 		panic(err)
 	}
 }
@@ -63,7 +77,7 @@ func createOrder(w http.ResponseWriter, r *http.Request) {
 
 	pizza, err := FindPizza(orderContent.Pizza)
 	if err != nil {
-		if err := serveResponse(w, 404, &errorResponse{"not_found", "Order not found"}); err != nil {
+		if err := serveResponse(w, 404, &errorResponse{"not_found", err.Error()}); err != nil {
 			panic(err)
 		}
 		return

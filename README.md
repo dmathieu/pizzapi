@@ -8,13 +8,15 @@ This API provides a way of viewing pizzas and ordering them.
 |------|-------------|--------------------------------------|
 | GET  | /pizzas     | List all pizzas which can be ordered |
 | POST | /orders     | Order a new pizza                    |
+| GET  | /orders     | List all orders                      |
 | GET  | /orders/:id | View an order pizza's status         |
 
 There is no database. Everything is stored in memory, except for the pizzas list which is in `pizza.json`.
 
+
 ### Ordering a pizza
 
-> curl --data '{"id":1}' http://localhost:5000/orders
+> curl -H "Authorization: team_name" --data '{"id":1}' http://localhost:5000/orders
 
 ## Constraints
 

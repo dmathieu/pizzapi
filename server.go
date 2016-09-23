@@ -12,6 +12,7 @@ func app() http.Handler {
 	r := mux.NewRouter()
 	r.HandleFunc("/", home).Methods("GET")
 	r.HandleFunc("/pizzas", pizzasList).Methods("GET")
+	r.HandleFunc("/orders", findOrders).Methods("GET")
 	r.HandleFunc("/orders/{id}", findOrder).Methods("GET")
 
 	r.HandleFunc("/orders", createOrder).Methods("POST")

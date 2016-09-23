@@ -28,3 +28,7 @@ func FindOrder(id int) (*Order, error) {
 	}
 	return nil, errors.New("Cannot find order " + string(id))
 }
+
+func AllOrders() ([]*Order, error) {
+	return loadedOrders, nil
+}
