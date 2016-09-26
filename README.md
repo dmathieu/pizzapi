@@ -16,7 +16,23 @@ There is no database. Everything is stored in memory, except for the pizzas list
 
 ### API Documentation
 
-We're using Swagger/OpenAPI v2.0 for the API documentation. The schema is located in `doc/schema.yaml`.
+We're using Swagger/OpenAPI v2.0 for the API documentation. The schema is located in `schema.yaml`.
+
+#### Regenerating the documentation
+
+When the schema has changed, we need to regenerate the documentation.
+
+Install swagger-codegen:
+
+```
+brew install swagger-codegen
+```
+
+Regenerate the files:
+
+```
+swagger-codegen generate -i schema.yaml -l html2 -o ./static
+```
 
 ### Ordering a pizza
 

@@ -20,6 +20,8 @@ paths:
   /pizzas:
     get:
       description: List all pizzas which can be ordered
+      parameters:
+        - $ref: '#/parameters/authorization'
       responses:
         200:
           description: Success
@@ -31,6 +33,7 @@ paths:
     post:
       description: Create a new order
       parameters:
+        - $ref: '#/parameters/authorization'
         - name: Data
           in: body
           required: true
@@ -48,6 +51,8 @@ paths:
           description: Invalid parameters provided
     get:
       description: List all existing orders
+      parameters:
+        - $ref: '#/parameters/authorization'
       responses:
         200:
           description: Success
@@ -59,6 +64,7 @@ paths:
     get:
       description: Get an order
       parameters:
+        - $ref: '#/parameters/authorization'
         - $ref: '#/parameters/order_id'
       responses:
         200:
@@ -68,6 +74,11 @@ paths:
         404:
           description: Missing order
 parameters:
+  authorization:
+    name: Authorization
+    in: header
+    type: string
+    required: true
   order_id:
     name: order_id
     in: path
