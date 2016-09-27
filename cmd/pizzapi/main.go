@@ -1,7 +1,5 @@
 package main
 
-import _ "github.com/joho/godotenv/autoload"
-
 import (
 	"flag"
 	"fmt"
@@ -9,8 +7,10 @@ import (
 	"os"
 	"strconv"
 	"syscall"
+	"time"
 
 	"github.com/dmathieu/pizzapi"
+	_ "github.com/joho/godotenv/autoload"
 )
 
 func main() {
@@ -23,5 +23,7 @@ func main() {
 		os.Exit(1)
 	}
 
+	quit := pizzapi.UpdateStatus(1 * time.Minute)
 	pizzapi.StartServer(*pizzapi.HttpPort, pizzapi.AwaitSignals(syscall.SIGURG))
+	quit <- true
 }

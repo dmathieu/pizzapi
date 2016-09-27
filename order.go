@@ -2,19 +2,39 @@ package pizzapi
 
 import (
 	"errors"
+	"time"
 )
 
+type orderType struct {
+	Name     string
+	SetAfter time.Duration
+}
+
+var orderTypes = []*orderType{
+	&orderType{"new", 0},
+	&orderType{"processing", 1 * time.Minute},
+	&orderType{"cooking", 3 * time.Minute},
+	&orderType{"delivering", 10 * time.Minute},
+	&orderType{"finished", 15 * time.Minute},
+}
+
 type Order struct {
-	Id     int    `json:"id"`
-	Item   *Pizza `json:"pizza"`
-	Status string `json:"status"`
+	Id        int    `json:"id"`
+	Item      *Pizza `json:"pizza"`
+	Status    string `json:"status"`
+	CreatedAt time.Time
 }
 
 var loadedOrders []*Order
 
 func CreateOrder(item *Pizza) *Order {
 	id := len(loadedOrders) + 1
-	order := &Order{Id: id, Item: item, Status: "new"}
+	order := &Order{
+		Id:        id,
+		Item:      item,
+		Status:    orderTypes[0].Name,
+		CreatedAt: time.Now(),
+	}
 	loadedOrders = append(loadedOrders, order)
 
 	return order
