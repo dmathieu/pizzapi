@@ -763,17 +763,17 @@ margin-bottom: 20px;
 
 
                                 <li class="nav-header" data-group="Default"><a href="#api-Default">API Methods - Default</a></li>
-                                    <li data-group="Default" data-name="ordersGet" class="">
-                                        <a href="#api-Default-ordersGet">ordersGet</a>
+                                    <li data-group="Default" data-name="createOrder" class="">
+                                        <a href="#api-Default-createOrder">createOrder</a>
                                     </li>
-                                    <li data-group="Default" data-name="ordersOrderIdGet" class="">
-                                        <a href="#api-Default-ordersOrderIdGet">ordersOrderIdGet</a>
+                                    <li data-group="Default" data-name="getAllOrders" class="">
+                                        <a href="#api-Default-getAllOrders">getAllOrders</a>
                                     </li>
-                                    <li data-group="Default" data-name="ordersPost" class="">
-                                        <a href="#api-Default-ordersPost">ordersPost</a>
+                                    <li data-group="Default" data-name="getAllPizzas" class="">
+                                        <a href="#api-Default-getAllPizzas">getAllPizzas</a>
                                     </li>
-                                    <li data-group="Default" data-name="pizzasGet" class="">
-                                        <a href="#api-Default-pizzasGet">pizzasGet</a>
+                                    <li data-group="Default" data-name="getOrder" class="">
+                                        <a href="#api-Default-getOrder">getOrder</a>
                                     </li>
 
 
@@ -813,882 +813,11 @@ margin-bottom: 20px;
 
 
 
-                                    <div id="api-Default-ordersGet">
+                                    <div id="api-Default-createOrder">
 
-                                        <article id="api-Default-ordersGet-0" data-group="User" data-name="ordersGet" data-version="0">
+                                        <article id="api-Default-createOrder-0" data-group="User" data-name="createOrder" data-version="0">
                                             <div class="pull-left">
-                                                <h1>ordersGet</h1>
-                                            </div>
-                                            <div class="pull-right">
-
-                                            </div>
-                                            <div class="clearfix"></div>
-
-                                            <p></p>
-                                            <p>List all existing orders</p>
-                                            <p></p>
-                                            <br />
-
-                                            <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/orders</span></code></pre>
-
-                                            <p>
-                                                <h3>Usage and SDK Samples</h3>
-                                            </p>
-
-                                            <ul class="nav nav-tabs nav-tabs-examples">
-                                                <li class="active">
-                                                    <a href="#examples-Default-ordersGet-0-curl">Curl</a>
-                                                </li>
-                                                <li class="">
-              <a href="#examples-Default-ordersGet-0-java">Java</a>
-            </li>
-            <li class="">
-              <a href="#examples-Default-ordersGet-0-android">Android</a>
-            </li>
-            <!--<li class="">
-              <a href="#examples-Default-ordersGet-0-groovy">Groovy</a>
-            </li>-->
-                                                <li class="">
-                                                    <a href="#examples-Default-ordersGet-0-objc">Obj-C</a>
-                                                </li>
-                                                <li class="">
-                                                    <a href="#examples-Default-ordersGet-0-javascript">JavaScript</a>
-                                                </li>
-                                                <!--<li class="">
-              <a href="#examples-Default-ordersGet-0-angular">Angular</a>
-            </li>-->
-                                                <li class="">
-                                                    <a href="#examples-Default-ordersGet-0-csharp">C#</a>
-                                                </li>
-                                                <li class="">
-              <a href="#examples-Default-ordersGet-0-php">PHP</a>
-            </li>
-                                            </ul>
-
-                                            <div class="tab-content">
-                                                <div class="tab-pane active" id="examples-Default-ordersGet-0-curl">
-                                                    <pre class="prettyprint"><code class="language-bsh">
-curl -X <span style="text-transform: uppercase;">get</span> -H "apiKey: [[apiKey]]" -H "apiSecret: [[apiSecret]]" "http://localhost/orders"
-
-
-</code></pre>
-                                                </div>
-
-                                                <div class="tab-pane" id="examples-Default-ordersGet-0-java">
-                                                  <pre class="prettyprint"><code class="language-java">
-import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import .DefaultApi;
-
-import java.io.File;
-import java.util.*;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        
-        DefaultApi apiInstance = new DefaultApi();
-        String authorization = authorization_example; // String | 
-        try {
-            array[Order] result = apiInstance.ordersGet(authorization);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#ordersGet");
-            e.printStackTrace();
-        }
-    }
-}
-
-                                                  </code></pre>
-          </div>
-
-
-                                                <div class="tab-pane" id="examples-Default-ordersGet-0-android">
-                                                  <pre class="prettyprint"><code class="language-java">
-import .DefaultApi;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        DefaultApi apiInstance = new DefaultApi();
-        String authorization = authorization_example; // String | 
-        try {
-            array[Order] result = apiInstance.ordersGet(authorization);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#ordersGet");
-            e.printStackTrace();
-        }
-    }
-}
-
-                                                  </code></pre>
-          </div>
-
-          <!--
-          <div class="tab-pane" id="examples-Default-ordersGet-0-groovy">
-            <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-          </div> -->
-
-
-                                                <div class="tab-pane" id="examples-Default-ordersGet-0-objc">
-                                                    <pre class="prettyprint"><code class="language-cpp">
-
-String *authorization = authorization_example; // 
-
-DefaultApi *apiInstance = [[DefaultApi alloc] init];
-
-[apiInstance ordersGetWith:authorization
-              completionHandler: ^(array[Order] output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
-
-                                                    </code></pre>
-                                                </div>
-                                                <div class="tab-pane" id="examples-Default-ordersGet-0-javascript">
-                                                    <pre class="prettyprint"><code class="language-js">
-var  = require('');
-
-var api = new .DefaultApi()
-
-var authorization = authorization_example; // {String} 
-
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-api.ordersGet(authorization, callback);
-
-                                                    </code></pre>
-                                                </div>
-
-                                                <!--<div class="tab-pane" id="examples-Default-ordersGet-0-angular">
-            <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-          </div>-->
-
-                                                <div class="tab-pane" id="examples-Default-ordersGet-0-csharp">
-                                                    <pre class="prettyprint"><code class="language-cs">
-using System;
-using System.Diagnostics;
-using .Api;
-using .Client;
-using ;
-
-namespace Example
-{
-    public class ordersGetExample
-    {
-        public void main()
-        {
-            
-            var apiInstance = new DefaultApi();
-            var authorization = authorization_example;  // String | 
-
-            try
-            {
-                array[Order] result = apiInstance.ordersGet(authorization);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling DefaultApi.ordersGet: " + e.Message );
-            }
-        }
-    }
-}
-
-                                                    </code></pre>
-                                                </div>
-
-
-                                                <div class="tab-pane" id="examples-Default-ordersGet-0-php">
-                                                  <pre class="prettyprint"><code class="language-php">
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-$api_instance = new io.swagger.client\Api\DefaultApi();
-$authorization = authorization_example; // String | 
-
-try {
-    $result = $api_instance->ordersGet($authorization);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->ordersGet: ', $e->getMessage(), PHP_EOL;
-}
-
-                                                  </code></pre>
-          </div>
-
-                                            </div>
-
-
-
-
-
-                                            <h2>Parameters</h2>
-
-
-
-
-                                                <div class="methodsubtabletitle">Header parameters</div>
-                                                <table id="methodsubtable">
-                                                    <tr>
-                                                        <th width="150px">Name</th>
-                                                        <th>Description</th>
-                                                    </tr>
-                                                    <!---->
-                                                        <tr><td style="width:150px;">authorization*</td>
-<td>
-
-
-<script>
-												$(document).ready(function() {
-													var schemaWrapper = {
-  "name" : "Authorization",
-  "in" : "header",
-  "required" : true,
-  "type" : "string"
-};
-													var schema = schemaWrapper;
-
-
-
-
-													var view = new JSONSchemaView(schema,0);
-													var result = $('#d2e199_ordersGet_authorization');
-													result.empty();
-													result.append(view.render());
-
-
-
-
-
-												});
-												</script>
-												<div id="d2e199_ordersGet_authorization"></div>
-</td>
-</tr>
-
-
-                                                </table>
-
-
-
-
-                                            <h2>Responses</h2>
-
-                                                <h3> Status: 200 - Success </h3>
-
-                                                <ul class="nav nav-tabs nav-tabs-examples" >
-
-                                                    <li class="active">
-                                                        <a href="#examples-Default-ordersGet-schema">Schema</a>
-                                                    </li>
-
-
-                                                </ul>
-
-
-
-
-
-
-
-                                                <div class="tab-content" style='margin-bottom: 10px;'>
-
-
-
-                                                    <div class="tab-pane active" id="examples-Default-ordersGet-schema">
-
-
-
-
-                                                        <div id='examples-Default-ordersGet-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-
-                                                            <script>
-                                                                $(document).ready(function() {
-                                                                    var schemaWrapper = {
-  "description" : "Success",
-  "schema" : {
-    "type" : "array",
-    "items" : {
-      "$ref" : "#/definitions/Order"
-    }
-  }
-};
-                                                                    var schema = schemaWrapper.schema;
-                                                                    schemaWrapper.definitions = defs;
-                                                                    //console.log(JSON.stringify(schema))
-                                                                    JsonRefs.resolveRefs(schemaWrapper, {
-                                                                        "depth": 3,
-                                                                        "resolveRemoteRefs": false,
-                                                                        "resolveFileRefs": false
-                                                                    }, function(err, resolved, metadata) {
-
-                                                                        //console.log(JSON.stringify(resolved));
-
-
-
-                                                                        var view = new JSONSchemaView(resolved.schema, 3);
-                                                                        $('#examples-Default-ordersGet-schema-data').val(JSON.stringify(resolved.schema));
-                                                                        var result = $('#examples-Default-ordersGet-schema-200');
-                                                                        result.empty();
-                                                                        result.append(view.render());
-                                                                    });
-
-
-
-
-                                                                });
-                                                            </script>
-                                                        </div>
-                                                        <input id='examples-Default-ordersGet-schema-data' type='hidden' value=''></input>
-
-
-
-
-
-
-                                                    </div>
-
-
-
-
-                                                </div>
-
-
-
-
-
-
-
-
-
-                                        </article>
-
-                                    </div>
-
-                                    <hr>
-
-
-
-
-
-
-
-
-                                    <div id="api-Default-ordersOrderIdGet">
-
-                                        <article id="api-Default-ordersOrderIdGet-0" data-group="User" data-name="ordersOrderIdGet" data-version="0">
-                                            <div class="pull-left">
-                                                <h1>ordersOrderIdGet</h1>
-                                            </div>
-                                            <div class="pull-right">
-
-                                            </div>
-                                            <div class="clearfix"></div>
-
-                                            <p></p>
-                                            <p>Get an order</p>
-                                            <p></p>
-                                            <br />
-
-                                            <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/orders/{order_id}</span></code></pre>
-
-                                            <p>
-                                                <h3>Usage and SDK Samples</h3>
-                                            </p>
-
-                                            <ul class="nav nav-tabs nav-tabs-examples">
-                                                <li class="active">
-                                                    <a href="#examples-Default-ordersOrderIdGet-0-curl">Curl</a>
-                                                </li>
-                                                <li class="">
-              <a href="#examples-Default-ordersOrderIdGet-0-java">Java</a>
-            </li>
-            <li class="">
-              <a href="#examples-Default-ordersOrderIdGet-0-android">Android</a>
-            </li>
-            <!--<li class="">
-              <a href="#examples-Default-ordersOrderIdGet-0-groovy">Groovy</a>
-            </li>-->
-                                                <li class="">
-                                                    <a href="#examples-Default-ordersOrderIdGet-0-objc">Obj-C</a>
-                                                </li>
-                                                <li class="">
-                                                    <a href="#examples-Default-ordersOrderIdGet-0-javascript">JavaScript</a>
-                                                </li>
-                                                <!--<li class="">
-              <a href="#examples-Default-ordersOrderIdGet-0-angular">Angular</a>
-            </li>-->
-                                                <li class="">
-                                                    <a href="#examples-Default-ordersOrderIdGet-0-csharp">C#</a>
-                                                </li>
-                                                <li class="">
-              <a href="#examples-Default-ordersOrderIdGet-0-php">PHP</a>
-            </li>
-                                            </ul>
-
-                                            <div class="tab-content">
-                                                <div class="tab-pane active" id="examples-Default-ordersOrderIdGet-0-curl">
-                                                    <pre class="prettyprint"><code class="language-bsh">
-curl -X <span style="text-transform: uppercase;">get</span> -H "apiKey: [[apiKey]]" -H "apiSecret: [[apiSecret]]" "http://localhost/orders/{order_id}"
-
-
-</code></pre>
-                                                </div>
-
-                                                <div class="tab-pane" id="examples-Default-ordersOrderIdGet-0-java">
-                                                  <pre class="prettyprint"><code class="language-java">
-import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import .DefaultApi;
-
-import java.io.File;
-import java.util.*;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        
-        DefaultApi apiInstance = new DefaultApi();
-        String authorization = authorization_example; // String | 
-        String orderId = orderId_example; // String | 
-        try {
-            Order result = apiInstance.ordersOrderIdGet(authorization, orderId);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#ordersOrderIdGet");
-            e.printStackTrace();
-        }
-    }
-}
-
-                                                  </code></pre>
-          </div>
-
-
-                                                <div class="tab-pane" id="examples-Default-ordersOrderIdGet-0-android">
-                                                  <pre class="prettyprint"><code class="language-java">
-import .DefaultApi;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        DefaultApi apiInstance = new DefaultApi();
-        String authorization = authorization_example; // String | 
-        String orderId = orderId_example; // String | 
-        try {
-            Order result = apiInstance.ordersOrderIdGet(authorization, orderId);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#ordersOrderIdGet");
-            e.printStackTrace();
-        }
-    }
-}
-
-                                                  </code></pre>
-          </div>
-
-          <!--
-          <div class="tab-pane" id="examples-Default-ordersOrderIdGet-0-groovy">
-            <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-          </div> -->
-
-
-                                                <div class="tab-pane" id="examples-Default-ordersOrderIdGet-0-objc">
-                                                    <pre class="prettyprint"><code class="language-cpp">
-
-String *authorization = authorization_example; // 
-String *orderId = orderId_example; // 
-
-DefaultApi *apiInstance = [[DefaultApi alloc] init];
-
-[apiInstance ordersOrderIdGetWith:authorization
-    orderId:orderId
-              completionHandler: ^(Order output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
-
-                                                    </code></pre>
-                                                </div>
-                                                <div class="tab-pane" id="examples-Default-ordersOrderIdGet-0-javascript">
-                                                    <pre class="prettyprint"><code class="language-js">
-var  = require('');
-
-var api = new .DefaultApi()
-
-var authorization = authorization_example; // {String} 
-
-var orderId = orderId_example; // {String} 
-
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-api.ordersOrderIdGet(authorizationorderId, callback);
-
-                                                    </code></pre>
-                                                </div>
-
-                                                <!--<div class="tab-pane" id="examples-Default-ordersOrderIdGet-0-angular">
-            <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-          </div>-->
-
-                                                <div class="tab-pane" id="examples-Default-ordersOrderIdGet-0-csharp">
-                                                    <pre class="prettyprint"><code class="language-cs">
-using System;
-using System.Diagnostics;
-using .Api;
-using .Client;
-using ;
-
-namespace Example
-{
-    public class ordersOrderIdGetExample
-    {
-        public void main()
-        {
-            
-            var apiInstance = new DefaultApi();
-            var authorization = authorization_example;  // String | 
-            var orderId = orderId_example;  // String | 
-
-            try
-            {
-                Order result = apiInstance.ordersOrderIdGet(authorization, orderId);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling DefaultApi.ordersOrderIdGet: " + e.Message );
-            }
-        }
-    }
-}
-
-                                                    </code></pre>
-                                                </div>
-
-
-                                                <div class="tab-pane" id="examples-Default-ordersOrderIdGet-0-php">
-                                                  <pre class="prettyprint"><code class="language-php">
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-$api_instance = new io.swagger.client\Api\DefaultApi();
-$authorization = authorization_example; // String | 
-$orderId = orderId_example; // String | 
-
-try {
-    $result = $api_instance->ordersOrderIdGet($authorization, $orderId);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->ordersOrderIdGet: ', $e->getMessage(), PHP_EOL;
-}
-
-                                                  </code></pre>
-          </div>
-
-                                            </div>
-
-
-
-
-
-                                            <h2>Parameters</h2>
-
-
-
-                                                <div class="methodsubtabletitle">Path parameters</div>
-                                                <table id="methodsubtable">
-                                                    <tr>
-                                                        <th width="150px">Name</th>
-                                                        <th>Description</th>
-                                                    </tr>
-                                                    <!---->
-                                                        <tr><td style="width:150px;">orderId*</td>
-<td>
-
-
-<script>
-												$(document).ready(function() {
-													var schemaWrapper = {
-  "name" : "order_id",
-  "in" : "path",
-  "required" : true,
-  "type" : "string"
-};
-													var schema = schemaWrapper;
-
-
-
-
-													var view = new JSONSchemaView(schema,0);
-													var result = $('#d2e199_ordersOrderIdGet_orderId');
-													result.empty();
-													result.append(view.render());
-
-
-
-
-
-												});
-												</script>
-												<div id="d2e199_ordersOrderIdGet_orderId"></div>
-</td>
-</tr>
-
-                                                </table>
-
-                                                <div class="methodsubtabletitle">Header parameters</div>
-                                                <table id="methodsubtable">
-                                                    <tr>
-                                                        <th width="150px">Name</th>
-                                                        <th>Description</th>
-                                                    </tr>
-                                                    <!---->
-                                                        <tr><td style="width:150px;">authorization*</td>
-<td>
-
-
-<script>
-												$(document).ready(function() {
-													var schemaWrapper = {
-  "name" : "Authorization",
-  "in" : "header",
-  "required" : true,
-  "type" : "string",
-  "x-codegen-hasMoreRequired" : true,
-  "x-codegen-hasMoreOptional" : true
-};
-													var schema = schemaWrapper;
-
-
-
-
-													var view = new JSONSchemaView(schema,0);
-													var result = $('#d2e199_ordersOrderIdGet_authorization');
-													result.empty();
-													result.append(view.render());
-
-
-
-
-
-												});
-												</script>
-												<div id="d2e199_ordersOrderIdGet_authorization"></div>
-</td>
-</tr>
-
-
-                                                </table>
-
-
-
-
-                                            <h2>Responses</h2>
-
-                                                <h3> Status: 200 - Success </h3>
-
-                                                <ul class="nav nav-tabs nav-tabs-examples" >
-
-                                                    <li class="active">
-                                                        <a href="#examples-Default-ordersOrderIdGet-schema">Schema</a>
-                                                    </li>
-
-
-                                                </ul>
-
-
-
-
-
-
-
-                                                <div class="tab-content" style='margin-bottom: 10px;'>
-
-
-
-                                                    <div class="tab-pane active" id="examples-Default-ordersOrderIdGet-schema">
-
-
-
-
-                                                        <div id='examples-Default-ordersOrderIdGet-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-
-                                                            <script>
-                                                                $(document).ready(function() {
-                                                                    var schemaWrapper = {
-  "description" : "Success",
-  "schema" : {
-    "$ref" : "#/definitions/Order"
-  }
-};
-                                                                    var schema = schemaWrapper.schema;
-                                                                    schemaWrapper.definitions = defs;
-                                                                    //console.log(JSON.stringify(schema))
-                                                                    JsonRefs.resolveRefs(schemaWrapper, {
-                                                                        "depth": 3,
-                                                                        "resolveRemoteRefs": false,
-                                                                        "resolveFileRefs": false
-                                                                    }, function(err, resolved, metadata) {
-
-                                                                        //console.log(JSON.stringify(resolved));
-
-
-
-                                                                        var view = new JSONSchemaView(resolved.schema, 3);
-                                                                        $('#examples-Default-ordersOrderIdGet-schema-data').val(JSON.stringify(resolved.schema));
-                                                                        var result = $('#examples-Default-ordersOrderIdGet-schema-200');
-                                                                        result.empty();
-                                                                        result.append(view.render());
-                                                                    });
-
-
-
-
-                                                                });
-                                                            </script>
-                                                        </div>
-                                                        <input id='examples-Default-ordersOrderIdGet-schema-data' type='hidden' value=''></input>
-
-
-
-
-
-
-                                                    </div>
-
-
-
-
-                                                </div>
-
-
-
-
-                                                <h3> Status: 404 - Missing order </h3>
-
-                                                <ul class="nav nav-tabs nav-tabs-examples" >
-
-                                                    <li class="active">
-                                                        <a href="#examples-Default-ordersOrderIdGet-schema">Schema</a>
-                                                    </li>
-
-
-                                                </ul>
-
-
-
-
-
-
-
-                                                <div class="tab-content" style='margin-bottom: 10px;'>
-
-
-
-                                                    <div class="tab-pane active" id="examples-Default-ordersOrderIdGet-schema">
-
-
-
-
-                                                        <div id='examples-Default-ordersOrderIdGet-schema-404' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-
-                                                            <script>
-                                                                $(document).ready(function() {
-                                                                    var schemaWrapper = {
-  "description" : "Missing order"
-};
-                                                                    var schema = schemaWrapper.schema;
-                                                                    schemaWrapper.definitions = defs;
-                                                                    //console.log(JSON.stringify(schema))
-                                                                    JsonRefs.resolveRefs(schemaWrapper, {
-                                                                        "depth": 3,
-                                                                        "resolveRemoteRefs": false,
-                                                                        "resolveFileRefs": false
-                                                                    }, function(err, resolved, metadata) {
-
-                                                                        //console.log(JSON.stringify(resolved));
-
-
-
-                                                                        var view = new JSONSchemaView(resolved.schema, 3);
-                                                                        $('#examples-Default-ordersOrderIdGet-schema-data').val(JSON.stringify(resolved.schema));
-                                                                        var result = $('#examples-Default-ordersOrderIdGet-schema-404');
-                                                                        result.empty();
-                                                                        result.append(view.render());
-                                                                    });
-
-
-
-
-                                                                });
-                                                            </script>
-                                                        </div>
-                                                        <input id='examples-Default-ordersOrderIdGet-schema-data' type='hidden' value=''></input>
-
-
-
-
-
-
-                                                    </div>
-
-
-
-
-                                                </div>
-
-
-
-
-
-
-
-
-
-                                        </article>
-
-                                    </div>
-
-                                    <hr>
-
-
-
-
-
-
-
-
-                                    <div id="api-Default-ordersPost">
-
-                                        <article id="api-Default-ordersPost-0" data-group="User" data-name="ordersPost" data-version="0">
-                                            <div class="pull-left">
-                                                <h1>ordersPost</h1>
+                                                <h1>createOrder</h1>
                                             </div>
                                             <div class="pull-right">
 
@@ -1708,36 +837,36 @@ try {
 
                                             <ul class="nav nav-tabs nav-tabs-examples">
                                                 <li class="active">
-                                                    <a href="#examples-Default-ordersPost-0-curl">Curl</a>
+                                                    <a href="#examples-Default-createOrder-0-curl">Curl</a>
                                                 </li>
                                                 <li class="">
-              <a href="#examples-Default-ordersPost-0-java">Java</a>
+              <a href="#examples-Default-createOrder-0-java">Java</a>
             </li>
             <li class="">
-              <a href="#examples-Default-ordersPost-0-android">Android</a>
+              <a href="#examples-Default-createOrder-0-android">Android</a>
             </li>
             <!--<li class="">
-              <a href="#examples-Default-ordersPost-0-groovy">Groovy</a>
+              <a href="#examples-Default-createOrder-0-groovy">Groovy</a>
             </li>-->
                                                 <li class="">
-                                                    <a href="#examples-Default-ordersPost-0-objc">Obj-C</a>
+                                                    <a href="#examples-Default-createOrder-0-objc">Obj-C</a>
                                                 </li>
                                                 <li class="">
-                                                    <a href="#examples-Default-ordersPost-0-javascript">JavaScript</a>
+                                                    <a href="#examples-Default-createOrder-0-javascript">JavaScript</a>
                                                 </li>
                                                 <!--<li class="">
-              <a href="#examples-Default-ordersPost-0-angular">Angular</a>
+              <a href="#examples-Default-createOrder-0-angular">Angular</a>
             </li>-->
                                                 <li class="">
-                                                    <a href="#examples-Default-ordersPost-0-csharp">C#</a>
+                                                    <a href="#examples-Default-createOrder-0-csharp">C#</a>
                                                 </li>
                                                 <li class="">
-              <a href="#examples-Default-ordersPost-0-php">PHP</a>
+              <a href="#examples-Default-createOrder-0-php">PHP</a>
             </li>
                                             </ul>
 
                                             <div class="tab-content">
-                                                <div class="tab-pane active" id="examples-Default-ordersPost-0-curl">
+                                                <div class="tab-pane active" id="examples-Default-createOrder-0-curl">
                                                     <pre class="prettyprint"><code class="language-bsh">
 curl -X <span style="text-transform: uppercase;">post</span> -H "apiKey: [[apiKey]]" -H "apiSecret: [[apiSecret]]" "http://localhost/orders"
 
@@ -1745,7 +874,7 @@ curl -X <span style="text-transform: uppercase;">post</span> -H "apiKey: [[apiKe
 </code></pre>
                                                 </div>
 
-                                                <div class="tab-pane" id="examples-Default-ordersPost-0-java">
+                                                <div class="tab-pane" id="examples-Default-createOrder-0-java">
                                                   <pre class="prettyprint"><code class="language-java">
 import io.swagger.client.*;
 import io.swagger.client.auth.*;
@@ -1763,9 +892,9 @@ public class DefaultApiExample {
         String authorization = authorization_example; // String | 
         Data data = ; // Data | 
         try {
-            apiInstance.ordersPost(authorization, data);
+            apiInstance.createOrder(authorization, data);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#ordersPost");
+            System.err.println("Exception when calling DefaultApi#createOrder");
             e.printStackTrace();
         }
     }
@@ -1775,7 +904,7 @@ public class DefaultApiExample {
           </div>
 
 
-                                                <div class="tab-pane" id="examples-Default-ordersPost-0-android">
+                                                <div class="tab-pane" id="examples-Default-createOrder-0-android">
                                                   <pre class="prettyprint"><code class="language-java">
 import .DefaultApi;
 
@@ -1786,9 +915,9 @@ public class DefaultApiExample {
         String authorization = authorization_example; // String | 
         Data data = ; // Data | 
         try {
-            apiInstance.ordersPost(authorization, data);
+            apiInstance.createOrder(authorization, data);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#ordersPost");
+            System.err.println("Exception when calling DefaultApi#createOrder");
             e.printStackTrace();
         }
     }
@@ -1798,12 +927,12 @@ public class DefaultApiExample {
           </div>
 
           <!--
-          <div class="tab-pane" id="examples-Default-ordersPost-0-groovy">
+          <div class="tab-pane" id="examples-Default-createOrder-0-groovy">
             <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
           </div> -->
 
 
-                                                <div class="tab-pane" id="examples-Default-ordersPost-0-objc">
+                                                <div class="tab-pane" id="examples-Default-createOrder-0-objc">
                                                     <pre class="prettyprint"><code class="language-cpp">
 
 String *authorization = authorization_example; // 
@@ -1811,7 +940,7 @@ Data *data = ; //
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
-[apiInstance ordersPostWith:authorization
+[apiInstance createOrderWith:authorization
     data:data
               completionHandler: ^(NSError* error) {
                             if (error) {
@@ -1821,7 +950,7 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
                                                     </code></pre>
                                                 </div>
-                                                <div class="tab-pane" id="examples-Default-ordersPost-0-javascript">
+                                                <div class="tab-pane" id="examples-Default-createOrder-0-javascript">
                                                     <pre class="prettyprint"><code class="language-js">
 var  = require('');
 
@@ -1839,16 +968,16 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-api.ordersPost(authorizationdata, callback);
+api.createOrder(authorizationdata, callback);
 
                                                     </code></pre>
                                                 </div>
 
-                                                <!--<div class="tab-pane" id="examples-Default-ordersPost-0-angular">
+                                                <!--<div class="tab-pane" id="examples-Default-createOrder-0-angular">
             <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
           </div>-->
 
-                                                <div class="tab-pane" id="examples-Default-ordersPost-0-csharp">
+                                                <div class="tab-pane" id="examples-Default-createOrder-0-csharp">
                                                     <pre class="prettyprint"><code class="language-cs">
 using System;
 using System.Diagnostics;
@@ -1858,7 +987,7 @@ using ;
 
 namespace Example
 {
-    public class ordersPostExample
+    public class createOrderExample
     {
         public void main()
         {
@@ -1869,11 +998,11 @@ namespace Example
 
             try
             {
-                apiInstance.ordersPost(authorization, data);
+                apiInstance.createOrder(authorization, data);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.ordersPost: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.createOrder: " + e.Message );
             }
         }
     }
@@ -1883,7 +1012,7 @@ namespace Example
                                                 </div>
 
 
-                                                <div class="tab-pane" id="examples-Default-ordersPost-0-php">
+                                                <div class="tab-pane" id="examples-Default-createOrder-0-php">
                                                   <pre class="prettyprint"><code class="language-php">
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
@@ -1893,9 +1022,9 @@ $authorization = authorization_example; // String |
 $data = ; // Data | 
 
 try {
-    $api_instance->ordersPost($authorization, $data);
+    $api_instance->createOrder($authorization, $data);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->ordersPost: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->createOrder: ', $e->getMessage(), PHP_EOL;
 }
 
                                                   </code></pre>
@@ -1938,7 +1067,7 @@ try {
 
 
 													var view = new JSONSchemaView(schema,0);
-													var result = $('#d2e199_ordersPost_authorization');
+													var result = $('#d2e199_createOrder_authorization');
 													result.empty();
 													result.append(view.render());
 
@@ -1948,7 +1077,7 @@ try {
 
 												});
 												</script>
-												<div id="d2e199_ordersPost_authorization"></div>
+												<div id="d2e199_createOrder_authorization"></div>
 </td>
 </tr>
 
@@ -1986,7 +1115,7 @@ try {
 														
 													var view = new JSONSchemaView(resolved.schema,2,{isBodyParam: true});
 													 
-													var result = $('#d2e199_ordersPost_data');
+													var result = $('#d2e199_createOrder_data');
 													result.empty();
 													result.append(view.render());
 													
@@ -2002,7 +1131,7 @@ try {
 
 												});
 												</script>
-												<div id="d2e199_ordersPost_data"></div>
+												<div id="d2e199_createOrder_data"></div>
 </td>
 </tr>
 
@@ -2017,7 +1146,7 @@ try {
                                                 <ul class="nav nav-tabs nav-tabs-examples" >
 
                                                     <li class="active">
-                                                        <a href="#examples-Default-ordersPost-schema">Schema</a>
+                                                        <a href="#examples-Default-createOrder-schema">Schema</a>
                                                     </li>
 
 
@@ -2033,12 +1162,12 @@ try {
 
 
 
-                                                    <div class="tab-pane active" id="examples-Default-ordersPost-schema">
+                                                    <div class="tab-pane active" id="examples-Default-createOrder-schema">
 
 
 
 
-                                                        <div id='examples-Default-ordersPost-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                                        <div id='examples-Default-createOrder-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
 
                                                             <script>
                                                                 $(document).ready(function() {
@@ -2059,8 +1188,8 @@ try {
 
 
                                                                         var view = new JSONSchemaView(resolved.schema, 3);
-                                                                        $('#examples-Default-ordersPost-schema-data').val(JSON.stringify(resolved.schema));
-                                                                        var result = $('#examples-Default-ordersPost-schema-200');
+                                                                        $('#examples-Default-createOrder-schema-data').val(JSON.stringify(resolved.schema));
+                                                                        var result = $('#examples-Default-createOrder-schema-200');
                                                                         result.empty();
                                                                         result.append(view.render());
                                                                     });
@@ -2071,7 +1200,7 @@ try {
                                                                 });
                                                             </script>
                                                         </div>
-                                                        <input id='examples-Default-ordersPost-schema-data' type='hidden' value=''></input>
+                                                        <input id='examples-Default-createOrder-schema-data' type='hidden' value=''></input>
 
 
 
@@ -2093,7 +1222,7 @@ try {
                                                 <ul class="nav nav-tabs nav-tabs-examples" >
 
                                                     <li class="active">
-                                                        <a href="#examples-Default-ordersPost-schema">Schema</a>
+                                                        <a href="#examples-Default-createOrder-schema">Schema</a>
                                                     </li>
 
 
@@ -2109,12 +1238,12 @@ try {
 
 
 
-                                                    <div class="tab-pane active" id="examples-Default-ordersPost-schema">
+                                                    <div class="tab-pane active" id="examples-Default-createOrder-schema">
 
 
 
 
-                                                        <div id='examples-Default-ordersPost-schema-404' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                                        <div id='examples-Default-createOrder-schema-404' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
 
                                                             <script>
                                                                 $(document).ready(function() {
@@ -2135,8 +1264,8 @@ try {
 
 
                                                                         var view = new JSONSchemaView(resolved.schema, 3);
-                                                                        $('#examples-Default-ordersPost-schema-data').val(JSON.stringify(resolved.schema));
-                                                                        var result = $('#examples-Default-ordersPost-schema-404');
+                                                                        $('#examples-Default-createOrder-schema-data').val(JSON.stringify(resolved.schema));
+                                                                        var result = $('#examples-Default-createOrder-schema-404');
                                                                         result.empty();
                                                                         result.append(view.render());
                                                                     });
@@ -2147,7 +1276,7 @@ try {
                                                                 });
                                                             </script>
                                                         </div>
-                                                        <input id='examples-Default-ordersPost-schema-data' type='hidden' value=''></input>
+                                                        <input id='examples-Default-createOrder-schema-data' type='hidden' value=''></input>
 
 
 
@@ -2169,7 +1298,7 @@ try {
                                                 <ul class="nav nav-tabs nav-tabs-examples" >
 
                                                     <li class="active">
-                                                        <a href="#examples-Default-ordersPost-schema">Schema</a>
+                                                        <a href="#examples-Default-createOrder-schema">Schema</a>
                                                     </li>
 
 
@@ -2185,12 +1314,12 @@ try {
 
 
 
-                                                    <div class="tab-pane active" id="examples-Default-ordersPost-schema">
+                                                    <div class="tab-pane active" id="examples-Default-createOrder-schema">
 
 
 
 
-                                                        <div id='examples-Default-ordersPost-schema-422' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                                        <div id='examples-Default-createOrder-schema-422' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
 
                                                             <script>
                                                                 $(document).ready(function() {
@@ -2211,8 +1340,8 @@ try {
 
 
                                                                         var view = new JSONSchemaView(resolved.schema, 3);
-                                                                        $('#examples-Default-ordersPost-schema-data').val(JSON.stringify(resolved.schema));
-                                                                        var result = $('#examples-Default-ordersPost-schema-422');
+                                                                        $('#examples-Default-createOrder-schema-data').val(JSON.stringify(resolved.schema));
+                                                                        var result = $('#examples-Default-createOrder-schema-422');
                                                                         result.empty();
                                                                         result.append(view.render());
                                                                     });
@@ -2223,7 +1352,7 @@ try {
                                                                 });
                                                             </script>
                                                         </div>
-                                                        <input id='examples-Default-ordersPost-schema-data' type='hidden' value=''></input>
+                                                        <input id='examples-Default-createOrder-schema-data' type='hidden' value=''></input>
 
 
 
@@ -2258,11 +1387,385 @@ try {
 
 
 
-                                    <div id="api-Default-pizzasGet">
+                                    <div id="api-Default-getAllOrders">
 
-                                        <article id="api-Default-pizzasGet-0" data-group="User" data-name="pizzasGet" data-version="0">
+                                        <article id="api-Default-getAllOrders-0" data-group="User" data-name="getAllOrders" data-version="0">
                                             <div class="pull-left">
-                                                <h1>pizzasGet</h1>
+                                                <h1>getAllOrders</h1>
+                                            </div>
+                                            <div class="pull-right">
+
+                                            </div>
+                                            <div class="clearfix"></div>
+
+                                            <p></p>
+                                            <p>List all existing orders</p>
+                                            <p></p>
+                                            <br />
+
+                                            <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/orders</span></code></pre>
+
+                                            <p>
+                                                <h3>Usage and SDK Samples</h3>
+                                            </p>
+
+                                            <ul class="nav nav-tabs nav-tabs-examples">
+                                                <li class="active">
+                                                    <a href="#examples-Default-getAllOrders-0-curl">Curl</a>
+                                                </li>
+                                                <li class="">
+              <a href="#examples-Default-getAllOrders-0-java">Java</a>
+            </li>
+            <li class="">
+              <a href="#examples-Default-getAllOrders-0-android">Android</a>
+            </li>
+            <!--<li class="">
+              <a href="#examples-Default-getAllOrders-0-groovy">Groovy</a>
+            </li>-->
+                                                <li class="">
+                                                    <a href="#examples-Default-getAllOrders-0-objc">Obj-C</a>
+                                                </li>
+                                                <li class="">
+                                                    <a href="#examples-Default-getAllOrders-0-javascript">JavaScript</a>
+                                                </li>
+                                                <!--<li class="">
+              <a href="#examples-Default-getAllOrders-0-angular">Angular</a>
+            </li>-->
+                                                <li class="">
+                                                    <a href="#examples-Default-getAllOrders-0-csharp">C#</a>
+                                                </li>
+                                                <li class="">
+              <a href="#examples-Default-getAllOrders-0-php">PHP</a>
+            </li>
+                                            </ul>
+
+                                            <div class="tab-content">
+                                                <div class="tab-pane active" id="examples-Default-getAllOrders-0-curl">
+                                                    <pre class="prettyprint"><code class="language-bsh">
+curl -X <span style="text-transform: uppercase;">get</span> -H "apiKey: [[apiKey]]" -H "apiSecret: [[apiSecret]]" "http://localhost/orders"
+
+
+</code></pre>
+                                                </div>
+
+                                                <div class="tab-pane" id="examples-Default-getAllOrders-0-java">
+                                                  <pre class="prettyprint"><code class="language-java">
+import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import .DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        String authorization = authorization_example; // String | 
+        try {
+            array[Order] result = apiInstance.getAllOrders(authorization);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#getAllOrders");
+            e.printStackTrace();
+        }
+    }
+}
+
+                                                  </code></pre>
+          </div>
+
+
+                                                <div class="tab-pane" id="examples-Default-getAllOrders-0-android">
+                                                  <pre class="prettyprint"><code class="language-java">
+import .DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        String authorization = authorization_example; // String | 
+        try {
+            array[Order] result = apiInstance.getAllOrders(authorization);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#getAllOrders");
+            e.printStackTrace();
+        }
+    }
+}
+
+                                                  </code></pre>
+          </div>
+
+          <!--
+          <div class="tab-pane" id="examples-Default-getAllOrders-0-groovy">
+            <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+          </div> -->
+
+
+                                                <div class="tab-pane" id="examples-Default-getAllOrders-0-objc">
+                                                    <pre class="prettyprint"><code class="language-cpp">
+
+String *authorization = authorization_example; // 
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+[apiInstance getAllOrdersWith:authorization
+              completionHandler: ^(array[Order] output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+
+                                                    </code></pre>
+                                                </div>
+                                                <div class="tab-pane" id="examples-Default-getAllOrders-0-javascript">
+                                                    <pre class="prettyprint"><code class="language-js">
+var  = require('');
+
+var api = new .DefaultApi()
+
+var authorization = authorization_example; // {String} 
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.getAllOrders(authorization, callback);
+
+                                                    </code></pre>
+                                                </div>
+
+                                                <!--<div class="tab-pane" id="examples-Default-getAllOrders-0-angular">
+            <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+          </div>-->
+
+                                                <div class="tab-pane" id="examples-Default-getAllOrders-0-csharp">
+                                                    <pre class="prettyprint"><code class="language-cs">
+using System;
+using System.Diagnostics;
+using .Api;
+using .Client;
+using ;
+
+namespace Example
+{
+    public class getAllOrdersExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new DefaultApi();
+            var authorization = authorization_example;  // String | 
+
+            try
+            {
+                array[Order] result = apiInstance.getAllOrders(authorization);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.getAllOrders: " + e.Message );
+            }
+        }
+    }
+}
+
+                                                    </code></pre>
+                                                </div>
+
+
+                                                <div class="tab-pane" id="examples-Default-getAllOrders-0-php">
+                                                  <pre class="prettyprint"><code class="language-php">
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new io.swagger.client\Api\DefaultApi();
+$authorization = authorization_example; // String | 
+
+try {
+    $result = $api_instance->getAllOrders($authorization);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->getAllOrders: ', $e->getMessage(), PHP_EOL;
+}
+
+                                                  </code></pre>
+          </div>
+
+                                            </div>
+
+
+
+
+
+                                            <h2>Parameters</h2>
+
+
+
+
+                                                <div class="methodsubtabletitle">Header parameters</div>
+                                                <table id="methodsubtable">
+                                                    <tr>
+                                                        <th width="150px">Name</th>
+                                                        <th>Description</th>
+                                                    </tr>
+                                                    <!---->
+                                                        <tr><td style="width:150px;">authorization*</td>
+<td>
+
+
+<script>
+												$(document).ready(function() {
+													var schemaWrapper = {
+  "name" : "Authorization",
+  "in" : "header",
+  "required" : true,
+  "type" : "string"
+};
+													var schema = schemaWrapper;
+
+
+
+
+													var view = new JSONSchemaView(schema,0);
+													var result = $('#d2e199_getAllOrders_authorization');
+													result.empty();
+													result.append(view.render());
+
+
+
+
+
+												});
+												</script>
+												<div id="d2e199_getAllOrders_authorization"></div>
+</td>
+</tr>
+
+
+                                                </table>
+
+
+
+
+                                            <h2>Responses</h2>
+
+                                                <h3> Status: 200 - Success </h3>
+
+                                                <ul class="nav nav-tabs nav-tabs-examples" >
+
+                                                    <li class="active">
+                                                        <a href="#examples-Default-getAllOrders-schema">Schema</a>
+                                                    </li>
+
+
+                                                </ul>
+
+
+
+
+
+
+
+                                                <div class="tab-content" style='margin-bottom: 10px;'>
+
+
+
+                                                    <div class="tab-pane active" id="examples-Default-getAllOrders-schema">
+
+
+
+
+                                                        <div id='examples-Default-getAllOrders-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+
+                                                            <script>
+                                                                $(document).ready(function() {
+                                                                    var schemaWrapper = {
+  "description" : "Success",
+  "schema" : {
+    "type" : "array",
+    "items" : {
+      "$ref" : "#/definitions/Order"
+    }
+  }
+};
+                                                                    var schema = schemaWrapper.schema;
+                                                                    schemaWrapper.definitions = defs;
+                                                                    //console.log(JSON.stringify(schema))
+                                                                    JsonRefs.resolveRefs(schemaWrapper, {
+                                                                        "depth": 3,
+                                                                        "resolveRemoteRefs": false,
+                                                                        "resolveFileRefs": false
+                                                                    }, function(err, resolved, metadata) {
+
+                                                                        //console.log(JSON.stringify(resolved));
+
+
+
+                                                                        var view = new JSONSchemaView(resolved.schema, 3);
+                                                                        $('#examples-Default-getAllOrders-schema-data').val(JSON.stringify(resolved.schema));
+                                                                        var result = $('#examples-Default-getAllOrders-schema-200');
+                                                                        result.empty();
+                                                                        result.append(view.render());
+                                                                    });
+
+
+
+
+                                                                });
+                                                            </script>
+                                                        </div>
+                                                        <input id='examples-Default-getAllOrders-schema-data' type='hidden' value=''></input>
+
+
+
+
+
+
+                                                    </div>
+
+
+
+
+                                                </div>
+
+
+
+
+
+
+
+
+
+                                        </article>
+
+                                    </div>
+
+                                    <hr>
+
+
+
+
+
+
+
+
+                                    <div id="api-Default-getAllPizzas">
+
+                                        <article id="api-Default-getAllPizzas-0" data-group="User" data-name="getAllPizzas" data-version="0">
+                                            <div class="pull-left">
+                                                <h1>getAllPizzas</h1>
                                             </div>
                                             <div class="pull-right">
 
@@ -2282,36 +1785,36 @@ try {
 
                                             <ul class="nav nav-tabs nav-tabs-examples">
                                                 <li class="active">
-                                                    <a href="#examples-Default-pizzasGet-0-curl">Curl</a>
+                                                    <a href="#examples-Default-getAllPizzas-0-curl">Curl</a>
                                                 </li>
                                                 <li class="">
-              <a href="#examples-Default-pizzasGet-0-java">Java</a>
+              <a href="#examples-Default-getAllPizzas-0-java">Java</a>
             </li>
             <li class="">
-              <a href="#examples-Default-pizzasGet-0-android">Android</a>
+              <a href="#examples-Default-getAllPizzas-0-android">Android</a>
             </li>
             <!--<li class="">
-              <a href="#examples-Default-pizzasGet-0-groovy">Groovy</a>
+              <a href="#examples-Default-getAllPizzas-0-groovy">Groovy</a>
             </li>-->
                                                 <li class="">
-                                                    <a href="#examples-Default-pizzasGet-0-objc">Obj-C</a>
+                                                    <a href="#examples-Default-getAllPizzas-0-objc">Obj-C</a>
                                                 </li>
                                                 <li class="">
-                                                    <a href="#examples-Default-pizzasGet-0-javascript">JavaScript</a>
+                                                    <a href="#examples-Default-getAllPizzas-0-javascript">JavaScript</a>
                                                 </li>
                                                 <!--<li class="">
-              <a href="#examples-Default-pizzasGet-0-angular">Angular</a>
+              <a href="#examples-Default-getAllPizzas-0-angular">Angular</a>
             </li>-->
                                                 <li class="">
-                                                    <a href="#examples-Default-pizzasGet-0-csharp">C#</a>
+                                                    <a href="#examples-Default-getAllPizzas-0-csharp">C#</a>
                                                 </li>
                                                 <li class="">
-              <a href="#examples-Default-pizzasGet-0-php">PHP</a>
+              <a href="#examples-Default-getAllPizzas-0-php">PHP</a>
             </li>
                                             </ul>
 
                                             <div class="tab-content">
-                                                <div class="tab-pane active" id="examples-Default-pizzasGet-0-curl">
+                                                <div class="tab-pane active" id="examples-Default-getAllPizzas-0-curl">
                                                     <pre class="prettyprint"><code class="language-bsh">
 curl -X <span style="text-transform: uppercase;">get</span> -H "apiKey: [[apiKey]]" -H "apiSecret: [[apiSecret]]" "http://localhost/pizzas"
 
@@ -2319,7 +1822,7 @@ curl -X <span style="text-transform: uppercase;">get</span> -H "apiKey: [[apiKey
 </code></pre>
                                                 </div>
 
-                                                <div class="tab-pane" id="examples-Default-pizzasGet-0-java">
+                                                <div class="tab-pane" id="examples-Default-getAllPizzas-0-java">
                                                   <pre class="prettyprint"><code class="language-java">
 import io.swagger.client.*;
 import io.swagger.client.auth.*;
@@ -2336,10 +1839,10 @@ public class DefaultApiExample {
         DefaultApi apiInstance = new DefaultApi();
         String authorization = authorization_example; // String | 
         try {
-            array[Pizza] result = apiInstance.pizzasGet(authorization);
+            array[Pizza] result = apiInstance.getAllPizzas(authorization);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#pizzasGet");
+            System.err.println("Exception when calling DefaultApi#getAllPizzas");
             e.printStackTrace();
         }
     }
@@ -2349,7 +1852,7 @@ public class DefaultApiExample {
           </div>
 
 
-                                                <div class="tab-pane" id="examples-Default-pizzasGet-0-android">
+                                                <div class="tab-pane" id="examples-Default-getAllPizzas-0-android">
                                                   <pre class="prettyprint"><code class="language-java">
 import .DefaultApi;
 
@@ -2359,10 +1862,10 @@ public class DefaultApiExample {
         DefaultApi apiInstance = new DefaultApi();
         String authorization = authorization_example; // String | 
         try {
-            array[Pizza] result = apiInstance.pizzasGet(authorization);
+            array[Pizza] result = apiInstance.getAllPizzas(authorization);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#pizzasGet");
+            System.err.println("Exception when calling DefaultApi#getAllPizzas");
             e.printStackTrace();
         }
     }
@@ -2372,19 +1875,19 @@ public class DefaultApiExample {
           </div>
 
           <!--
-          <div class="tab-pane" id="examples-Default-pizzasGet-0-groovy">
+          <div class="tab-pane" id="examples-Default-getAllPizzas-0-groovy">
             <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
           </div> -->
 
 
-                                                <div class="tab-pane" id="examples-Default-pizzasGet-0-objc">
+                                                <div class="tab-pane" id="examples-Default-getAllPizzas-0-objc">
                                                     <pre class="prettyprint"><code class="language-cpp">
 
 String *authorization = authorization_example; // 
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
-[apiInstance pizzasGetWith:authorization
+[apiInstance getAllPizzasWith:authorization
               completionHandler: ^(array[Pizza] output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -2396,7 +1899,7 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
                                                     </code></pre>
                                                 </div>
-                                                <div class="tab-pane" id="examples-Default-pizzasGet-0-javascript">
+                                                <div class="tab-pane" id="examples-Default-getAllPizzas-0-javascript">
                                                     <pre class="prettyprint"><code class="language-js">
 var  = require('');
 
@@ -2412,16 +1915,16 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.pizzasGet(authorization, callback);
+api.getAllPizzas(authorization, callback);
 
                                                     </code></pre>
                                                 </div>
 
-                                                <!--<div class="tab-pane" id="examples-Default-pizzasGet-0-angular">
+                                                <!--<div class="tab-pane" id="examples-Default-getAllPizzas-0-angular">
             <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
           </div>-->
 
-                                                <div class="tab-pane" id="examples-Default-pizzasGet-0-csharp">
+                                                <div class="tab-pane" id="examples-Default-getAllPizzas-0-csharp">
                                                     <pre class="prettyprint"><code class="language-cs">
 using System;
 using System.Diagnostics;
@@ -2431,7 +1934,7 @@ using ;
 
 namespace Example
 {
-    public class pizzasGetExample
+    public class getAllPizzasExample
     {
         public void main()
         {
@@ -2441,12 +1944,12 @@ namespace Example
 
             try
             {
-                array[Pizza] result = apiInstance.pizzasGet(authorization);
+                array[Pizza] result = apiInstance.getAllPizzas(authorization);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.pizzasGet: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.getAllPizzas: " + e.Message );
             }
         }
     }
@@ -2456,7 +1959,7 @@ namespace Example
                                                 </div>
 
 
-                                                <div class="tab-pane" id="examples-Default-pizzasGet-0-php">
+                                                <div class="tab-pane" id="examples-Default-getAllPizzas-0-php">
                                                   <pre class="prettyprint"><code class="language-php">
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
@@ -2465,10 +1968,10 @@ $api_instance = new io.swagger.client\Api\DefaultApi();
 $authorization = authorization_example; // String | 
 
 try {
-    $result = $api_instance->pizzasGet($authorization);
+    $result = $api_instance->getAllPizzas($authorization);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->pizzasGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->getAllPizzas: ', $e->getMessage(), PHP_EOL;
 }
 
                                                   </code></pre>
@@ -2512,7 +2015,7 @@ try {
 
 
 													var view = new JSONSchemaView(schema,0);
-													var result = $('#d2e199_pizzasGet_authorization');
+													var result = $('#d2e199_getAllPizzas_authorization');
 													result.empty();
 													result.append(view.render());
 
@@ -2522,7 +2025,7 @@ try {
 
 												});
 												</script>
-												<div id="d2e199_pizzasGet_authorization"></div>
+												<div id="d2e199_getAllPizzas_authorization"></div>
 </td>
 </tr>
 
@@ -2539,7 +2042,7 @@ try {
                                                 <ul class="nav nav-tabs nav-tabs-examples" >
 
                                                     <li class="active">
-                                                        <a href="#examples-Default-pizzasGet-schema">Schema</a>
+                                                        <a href="#examples-Default-getAllPizzas-schema">Schema</a>
                                                     </li>
 
 
@@ -2555,12 +2058,12 @@ try {
 
 
 
-                                                    <div class="tab-pane active" id="examples-Default-pizzasGet-schema">
+                                                    <div class="tab-pane active" id="examples-Default-getAllPizzas-schema">
 
 
 
 
-                                                        <div id='examples-Default-pizzasGet-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                                        <div id='examples-Default-getAllPizzas-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
 
                                                             <script>
                                                                 $(document).ready(function() {
@@ -2587,8 +2090,8 @@ try {
 
 
                                                                         var view = new JSONSchemaView(resolved.schema, 3);
-                                                                        $('#examples-Default-pizzasGet-schema-data').val(JSON.stringify(resolved.schema));
-                                                                        var result = $('#examples-Default-pizzasGet-schema-200');
+                                                                        $('#examples-Default-getAllPizzas-schema-data').val(JSON.stringify(resolved.schema));
+                                                                        var result = $('#examples-Default-getAllPizzas-schema-200');
                                                                         result.empty();
                                                                         result.append(view.render());
                                                                     });
@@ -2599,7 +2102,504 @@ try {
                                                                 });
                                                             </script>
                                                         </div>
-                                                        <input id='examples-Default-pizzasGet-schema-data' type='hidden' value=''></input>
+                                                        <input id='examples-Default-getAllPizzas-schema-data' type='hidden' value=''></input>
+
+
+
+
+
+
+                                                    </div>
+
+
+
+
+                                                </div>
+
+
+
+
+
+
+
+
+
+                                        </article>
+
+                                    </div>
+
+                                    <hr>
+
+
+
+
+
+
+
+
+                                    <div id="api-Default-getOrder">
+
+                                        <article id="api-Default-getOrder-0" data-group="User" data-name="getOrder" data-version="0">
+                                            <div class="pull-left">
+                                                <h1>getOrder</h1>
+                                            </div>
+                                            <div class="pull-right">
+
+                                            </div>
+                                            <div class="clearfix"></div>
+
+                                            <p></p>
+                                            <p>Get an order</p>
+                                            <p></p>
+                                            <br />
+
+                                            <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/orders/{order_id}</span></code></pre>
+
+                                            <p>
+                                                <h3>Usage and SDK Samples</h3>
+                                            </p>
+
+                                            <ul class="nav nav-tabs nav-tabs-examples">
+                                                <li class="active">
+                                                    <a href="#examples-Default-getOrder-0-curl">Curl</a>
+                                                </li>
+                                                <li class="">
+              <a href="#examples-Default-getOrder-0-java">Java</a>
+            </li>
+            <li class="">
+              <a href="#examples-Default-getOrder-0-android">Android</a>
+            </li>
+            <!--<li class="">
+              <a href="#examples-Default-getOrder-0-groovy">Groovy</a>
+            </li>-->
+                                                <li class="">
+                                                    <a href="#examples-Default-getOrder-0-objc">Obj-C</a>
+                                                </li>
+                                                <li class="">
+                                                    <a href="#examples-Default-getOrder-0-javascript">JavaScript</a>
+                                                </li>
+                                                <!--<li class="">
+              <a href="#examples-Default-getOrder-0-angular">Angular</a>
+            </li>-->
+                                                <li class="">
+                                                    <a href="#examples-Default-getOrder-0-csharp">C#</a>
+                                                </li>
+                                                <li class="">
+              <a href="#examples-Default-getOrder-0-php">PHP</a>
+            </li>
+                                            </ul>
+
+                                            <div class="tab-content">
+                                                <div class="tab-pane active" id="examples-Default-getOrder-0-curl">
+                                                    <pre class="prettyprint"><code class="language-bsh">
+curl -X <span style="text-transform: uppercase;">get</span> -H "apiKey: [[apiKey]]" -H "apiSecret: [[apiSecret]]" "http://localhost/orders/{order_id}"
+
+
+</code></pre>
+                                                </div>
+
+                                                <div class="tab-pane" id="examples-Default-getOrder-0-java">
+                                                  <pre class="prettyprint"><code class="language-java">
+import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import .DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        String authorization = authorization_example; // String | 
+        String orderId = orderId_example; // String | 
+        try {
+            Order result = apiInstance.getOrder(authorization, orderId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#getOrder");
+            e.printStackTrace();
+        }
+    }
+}
+
+                                                  </code></pre>
+          </div>
+
+
+                                                <div class="tab-pane" id="examples-Default-getOrder-0-android">
+                                                  <pre class="prettyprint"><code class="language-java">
+import .DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        String authorization = authorization_example; // String | 
+        String orderId = orderId_example; // String | 
+        try {
+            Order result = apiInstance.getOrder(authorization, orderId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#getOrder");
+            e.printStackTrace();
+        }
+    }
+}
+
+                                                  </code></pre>
+          </div>
+
+          <!--
+          <div class="tab-pane" id="examples-Default-getOrder-0-groovy">
+            <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+          </div> -->
+
+
+                                                <div class="tab-pane" id="examples-Default-getOrder-0-objc">
+                                                    <pre class="prettyprint"><code class="language-cpp">
+
+String *authorization = authorization_example; // 
+String *orderId = orderId_example; // 
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+[apiInstance getOrderWith:authorization
+    orderId:orderId
+              completionHandler: ^(Order output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+
+                                                    </code></pre>
+                                                </div>
+                                                <div class="tab-pane" id="examples-Default-getOrder-0-javascript">
+                                                    <pre class="prettyprint"><code class="language-js">
+var  = require('');
+
+var api = new .DefaultApi()
+
+var authorization = authorization_example; // {String} 
+
+var orderId = orderId_example; // {String} 
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.getOrder(authorizationorderId, callback);
+
+                                                    </code></pre>
+                                                </div>
+
+                                                <!--<div class="tab-pane" id="examples-Default-getOrder-0-angular">
+            <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+          </div>-->
+
+                                                <div class="tab-pane" id="examples-Default-getOrder-0-csharp">
+                                                    <pre class="prettyprint"><code class="language-cs">
+using System;
+using System.Diagnostics;
+using .Api;
+using .Client;
+using ;
+
+namespace Example
+{
+    public class getOrderExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new DefaultApi();
+            var authorization = authorization_example;  // String | 
+            var orderId = orderId_example;  // String | 
+
+            try
+            {
+                Order result = apiInstance.getOrder(authorization, orderId);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.getOrder: " + e.Message );
+            }
+        }
+    }
+}
+
+                                                    </code></pre>
+                                                </div>
+
+
+                                                <div class="tab-pane" id="examples-Default-getOrder-0-php">
+                                                  <pre class="prettyprint"><code class="language-php">
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new io.swagger.client\Api\DefaultApi();
+$authorization = authorization_example; // String | 
+$orderId = orderId_example; // String | 
+
+try {
+    $result = $api_instance->getOrder($authorization, $orderId);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->getOrder: ', $e->getMessage(), PHP_EOL;
+}
+
+                                                  </code></pre>
+          </div>
+
+                                            </div>
+
+
+
+
+
+                                            <h2>Parameters</h2>
+
+
+
+                                                <div class="methodsubtabletitle">Path parameters</div>
+                                                <table id="methodsubtable">
+                                                    <tr>
+                                                        <th width="150px">Name</th>
+                                                        <th>Description</th>
+                                                    </tr>
+                                                    <!---->
+                                                        <tr><td style="width:150px;">orderId*</td>
+<td>
+
+
+<script>
+												$(document).ready(function() {
+													var schemaWrapper = {
+  "name" : "order_id",
+  "in" : "path",
+  "required" : true,
+  "type" : "string"
+};
+													var schema = schemaWrapper;
+
+
+
+
+													var view = new JSONSchemaView(schema,0);
+													var result = $('#d2e199_getOrder_orderId');
+													result.empty();
+													result.append(view.render());
+
+
+
+
+
+												});
+												</script>
+												<div id="d2e199_getOrder_orderId"></div>
+</td>
+</tr>
+
+                                                </table>
+
+                                                <div class="methodsubtabletitle">Header parameters</div>
+                                                <table id="methodsubtable">
+                                                    <tr>
+                                                        <th width="150px">Name</th>
+                                                        <th>Description</th>
+                                                    </tr>
+                                                    <!---->
+                                                        <tr><td style="width:150px;">authorization*</td>
+<td>
+
+
+<script>
+												$(document).ready(function() {
+													var schemaWrapper = {
+  "name" : "Authorization",
+  "in" : "header",
+  "required" : true,
+  "type" : "string",
+  "x-codegen-hasMoreRequired" : true,
+  "x-codegen-hasMoreOptional" : true
+};
+													var schema = schemaWrapper;
+
+
+
+
+													var view = new JSONSchemaView(schema,0);
+													var result = $('#d2e199_getOrder_authorization');
+													result.empty();
+													result.append(view.render());
+
+
+
+
+
+												});
+												</script>
+												<div id="d2e199_getOrder_authorization"></div>
+</td>
+</tr>
+
+
+                                                </table>
+
+
+
+
+                                            <h2>Responses</h2>
+
+                                                <h3> Status: 200 - Success </h3>
+
+                                                <ul class="nav nav-tabs nav-tabs-examples" >
+
+                                                    <li class="active">
+                                                        <a href="#examples-Default-getOrder-schema">Schema</a>
+                                                    </li>
+
+
+                                                </ul>
+
+
+
+
+
+
+
+                                                <div class="tab-content" style='margin-bottom: 10px;'>
+
+
+
+                                                    <div class="tab-pane active" id="examples-Default-getOrder-schema">
+
+
+
+
+                                                        <div id='examples-Default-getOrder-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+
+                                                            <script>
+                                                                $(document).ready(function() {
+                                                                    var schemaWrapper = {
+  "description" : "Success",
+  "schema" : {
+    "$ref" : "#/definitions/Order"
+  }
+};
+                                                                    var schema = schemaWrapper.schema;
+                                                                    schemaWrapper.definitions = defs;
+                                                                    //console.log(JSON.stringify(schema))
+                                                                    JsonRefs.resolveRefs(schemaWrapper, {
+                                                                        "depth": 3,
+                                                                        "resolveRemoteRefs": false,
+                                                                        "resolveFileRefs": false
+                                                                    }, function(err, resolved, metadata) {
+
+                                                                        //console.log(JSON.stringify(resolved));
+
+
+
+                                                                        var view = new JSONSchemaView(resolved.schema, 3);
+                                                                        $('#examples-Default-getOrder-schema-data').val(JSON.stringify(resolved.schema));
+                                                                        var result = $('#examples-Default-getOrder-schema-200');
+                                                                        result.empty();
+                                                                        result.append(view.render());
+                                                                    });
+
+
+
+
+                                                                });
+                                                            </script>
+                                                        </div>
+                                                        <input id='examples-Default-getOrder-schema-data' type='hidden' value=''></input>
+
+
+
+
+
+
+                                                    </div>
+
+
+
+
+                                                </div>
+
+
+
+
+                                                <h3> Status: 404 - Missing order </h3>
+
+                                                <ul class="nav nav-tabs nav-tabs-examples" >
+
+                                                    <li class="active">
+                                                        <a href="#examples-Default-getOrder-schema">Schema</a>
+                                                    </li>
+
+
+                                                </ul>
+
+
+
+
+
+
+
+                                                <div class="tab-content" style='margin-bottom: 10px;'>
+
+
+
+                                                    <div class="tab-pane active" id="examples-Default-getOrder-schema">
+
+
+
+
+                                                        <div id='examples-Default-getOrder-schema-404' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+
+                                                            <script>
+                                                                $(document).ready(function() {
+                                                                    var schemaWrapper = {
+  "description" : "Missing order"
+};
+                                                                    var schema = schemaWrapper.schema;
+                                                                    schemaWrapper.definitions = defs;
+                                                                    //console.log(JSON.stringify(schema))
+                                                                    JsonRefs.resolveRefs(schemaWrapper, {
+                                                                        "depth": 3,
+                                                                        "resolveRemoteRefs": false,
+                                                                        "resolveFileRefs": false
+                                                                    }, function(err, resolved, metadata) {
+
+                                                                        //console.log(JSON.stringify(resolved));
+
+
+
+                                                                        var view = new JSONSchemaView(resolved.schema, 3);
+                                                                        $('#examples-Default-getOrder-schema-data').val(JSON.stringify(resolved.schema));
+                                                                        var result = $('#examples-Default-getOrder-schema-404');
+                                                                        result.empty();
+                                                                        result.append(view.render());
+                                                                    });
+
+
+
+
+                                                                });
+                                                            </script>
+                                                        </div>
+                                                        <input id='examples-Default-getOrder-schema-data' type='hidden' value=''></input>
 
 
 
@@ -2653,7 +2653,7 @@ try {
             </div>
             <div id="generator">
                 <div class="content">
-                    Generated 2016-09-26T12:04:05.340+02:00
+                    Generated 2016-10-14T13:50:38.050+02:00
                 </div>
             </div>
         </div>

@@ -19,6 +19,7 @@ produces:
 paths:
   /pizzas:
     get:
+      operationId: GetAllPizzas
       description: List all pizzas which can be ordered
       parameters:
         - $ref: '#/parameters/authorization'
@@ -31,6 +32,7 @@ paths:
               $ref: '#/definitions/Pizza'
   /orders:
     post:
+      operationId: CreateOrder
       description: Create a new order
       parameters:
         - $ref: '#/parameters/authorization'
@@ -50,6 +52,7 @@ paths:
         422:
           description: Invalid parameters provided
     get:
+      operationId: GetAllOrders
       description: List all existing orders
       parameters:
         - $ref: '#/parameters/authorization'
@@ -62,6 +65,7 @@ paths:
               $ref: '#/definitions/Order'
   /orders/{order_id}:
     get:
+      operationId: GetOrder
       description: Get an order
       parameters:
         - $ref: '#/parameters/authorization'
