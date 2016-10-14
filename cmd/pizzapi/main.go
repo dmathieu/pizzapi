@@ -1,5 +1,6 @@
 package main
 
+import _ "github.com/joho/godotenv/autoload"
 import (
 	"flag"
 	"fmt"
@@ -9,21 +10,20 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/dmathieu/pizzapi"
-	_ "github.com/joho/godotenv/autoload"
+	"github.com/dmathieu/pizzapi/server"
 )
 
 func main() {
 	fmt.Println("Starting API...")
 	flag.Parse()
 
-	_, err := strconv.Atoi(*pizzapi.HttpPort)
+	_, err := strconv.Atoi(*server.HttpPort)
 	if err != nil {
-		log.Printf("%s: $PORT must be an integer value. - %s\n", *pizzapi.HttpPort, err)
+		log.Printf("%s: $PORT must be an integer value. - %s\n", *server.HttpPort, err)
 		os.Exit(1)
 	}
 
-	quit := pizzapi.UpdateStatus(1 * time.Minute)
-	pizzapi.StartServer(*pizzapi.HttpPort, pizzapi.AwaitSignals(syscall.SIGURG))
+	quit := server.UpdateStatus(1 * time.Minute)
+	server.StartServer(*server.HttpPort, server.AwaitSignals(syscall.SIGURG))
 	quit <- true
 }

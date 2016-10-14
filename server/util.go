@@ -1,4 +1,4 @@
-package pizzapi
+package server
 
 import (
 	"crypto/rand"
