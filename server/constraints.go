@@ -21,6 +21,7 @@ var ErrInvalidToken = errors.New("A valid token is requied in the `Authorization
 func buildConstraint(token, constraint string) (*Constraint, error) {
 	c, err := findConstraint(token)
 	if err == nil {
+		c.Constraint = constraint
 		return c, nil
 	}
 
