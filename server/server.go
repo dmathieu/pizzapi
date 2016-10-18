@@ -13,12 +13,12 @@ func app() http.Handler {
 	r.HandleFunc("/", home).Methods("GET")
 	r.PathPrefix("/doc").Handler(http.StripPrefix("/doc", http.FileServer(http.Dir("./static"))))
 
-	r.HandleFunc("/upgrade", upgrade).Methods("POST")
+	r.HandleFunc("/upgrade", upgrade).Methods("POST", "OPTIONS")
 
-	r.HandleFunc("/pizzas", applyConstraints(pizzasList)).Methods("GET")
-	r.HandleFunc("/orders", applyConstraints(findOrders)).Methods("GET")
-	r.HandleFunc("/orders/{id}", applyConstraints(findOrder)).Methods("GET")
-	r.HandleFunc("/orders", applyConstraints(createOrder)).Methods("POST")
+	r.HandleFunc("/pizzas", applyConstraints(pizzasList)).Methods("GET", "OPTIONS")
+	r.HandleFunc("/orders", applyConstraints(findOrders)).Methods("GET", "OPTIONS")
+	r.HandleFunc("/orders/{id}", applyConstraints(findOrder)).Methods("GET", "OPTIONS")
+	r.HandleFunc("/orders", applyConstraints(createOrder)).Methods("POST", "OPTIONS")
 
 	return corsHeaders(logRequest(r.ServeHTTP))
 }
