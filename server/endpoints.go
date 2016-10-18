@@ -84,9 +84,7 @@ func createOrder(w http.ResponseWriter, r *http.Request) {
 	}
 
 	order := CreateOrder(pizza)
-	w.WriteHeader(http.StatusCreated)
-
-	if err := serveResponse(w, 200, order); err != nil {
+	if err := serveResponse(w, http.StatusCreated, order); err != nil {
 		panic(err)
 	}
 }
