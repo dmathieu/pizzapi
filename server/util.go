@@ -47,6 +47,13 @@ func corsHeaders(fn http.HandlerFunc) http.HandlerFunc {
 		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS, GET")
 		w.Header().Set("Access-Control-Allow-Headers", "Authorization")
 		w.Header().Set("Access-Control-Allow-Credentials", "true")
+
+		if r.Method == http.MethodOptions {
+			if err := serveResponse(w, 200, "OK"); err != nil {
+				panic(err)
+			}
+			return
+		}
 		fn(w, r)
 	}
 }
