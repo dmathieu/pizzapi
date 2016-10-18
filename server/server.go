@@ -20,7 +20,7 @@ func app() http.Handler {
 	r.HandleFunc("/orders/{id}", applyConstraints(findOrder)).Methods("GET")
 	r.HandleFunc("/orders", applyConstraints(createOrder)).Methods("POST")
 
-	return logRequest(r.ServeHTTP)
+	return corsHeaders(logRequest(r.ServeHTTP))
 }
 
 func StartServer(port string, shutdown <-chan struct{}) {

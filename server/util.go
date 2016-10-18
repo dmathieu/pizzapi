@@ -41,6 +41,16 @@ func logRequest(fn http.HandlerFunc) http.HandlerFunc {
 	}
 }
 
+func corsHeaders(fn http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS, GET")
+		w.Header().Set("Access-Control-Allow-Headers", "Authorization")
+		w.Header().Set("Access-Control-Allow-Credentials", "true")
+		fn(w, r)
+	}
+}
+
 func NewUUID() (string, error) {
 	uuid := make([]byte, 16)
 	n, err := rand.Read(uuid)
